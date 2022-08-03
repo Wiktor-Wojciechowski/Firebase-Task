@@ -11,29 +11,33 @@ import Sidebar from './components/Sidebar'
 import { AuthProvider } from './context/AuthContext.js'
 
 import './css/styles.css';
+import Topbar from './components/Topbar';
 
 function App() {
 
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Sidebar />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path="/chat" element={
-            <PrivateRoute>
-              <Chat />
-            </PrivateRoute>
-          } />
-          <Route path="/" element={
-            <PrivateRoute>
-              <Chat />
-            </PrivateRoute>
-          } />
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </BrowserRouter>
+      <div id="app-container">
+        <BrowserRouter>
+          <Topbar />
+          <Sidebar />
+          <Routes>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path="/chat" element={
+              <PrivateRoute>
+                <Chat />
+              </PrivateRoute>
+            } />
+            <Route path="/" element={
+              <PrivateRoute>
+                <Chat />
+              </PrivateRoute>
+            } />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </AuthProvider>
   );
 }

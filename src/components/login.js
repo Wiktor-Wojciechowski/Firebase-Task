@@ -31,7 +31,7 @@ export default function Login() {
     return (
         //if user logged in redirect to home
         currentUser ? <Navigate to='/' /> :
-            <div>
+            <div id="login-component">
                 <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
                     <input type="email" onChange={(e) => { setEmail(e.target.value) }} />

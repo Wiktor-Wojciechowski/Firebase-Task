@@ -1,8 +1,45 @@
-.sidebar {
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.side-menu {
+    background-color: rgb(245, 123, 75);
     position: fixed;
-    top: 100px;
+    top: 60px;
     left: 0px;
     width: 0;
+    height: 100%;
     overflow-x: hidden;
     transition: all 0.1s linear;
+}
+
+#burger-icon {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 2;
+}
+
+#login-component {
+    min-height: 100vh;
+}
+
+
+#topbar-component {
+    width: 100%;
+    min-height: 60px;
+    background-color: skyblue;
+    position: sticky;
+    top: 0;
 }
