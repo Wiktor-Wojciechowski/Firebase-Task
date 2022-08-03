@@ -4,17 +4,24 @@ import { NavLink } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
 
+import iconClose from '../images/close_black_24dp.svg'
+import iconBurger from '../images/menu_black_24dp.svg'
+
 export default function Sidebar() {
     const [width, setWidth] = useState('0px');
+    const [source, setSource] = useState(iconBurger)
 
     return (
         <div>
+            <img src={source} />
             <button onClick={(e) => {
-                e.persist();
+
                 if (width == '0px') {
                     setWidth('250px')
+                    setSource(iconClose)
                 } else {
                     setWidth('0px')
+                    setSource(iconBurger)
                 }
             }}>Toggle</button>
             <div className='sidebar' style={{ width: width }}>
