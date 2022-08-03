@@ -1,4 +1,8 @@
 .sidebar {
     position: fixed;
     top: 100px;
+    left: 0px;
+    width: 0;
+    overflow-x: hidden;
+    transition: all 0.1s linear;
 }

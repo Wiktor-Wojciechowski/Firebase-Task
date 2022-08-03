@@ -5,41 +5,37 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Sidebar() {
-    const [show, setShow] = useState(false);
-    const [button, setButton] = useState('open')
+    const [width, setWidth] = useState('0px');
+
     return (
         <div>
-            <button onClick={() => {
-                setShow(!show)
-                if (button == 'open') {
-                    setButton('close')
+            <button onClick={(e) => {
+                e.persist();
+                if (width == '0px') {
+                    setWidth('250px')
                 } else {
-                    setButton('open')
+                    setWidth('0px')
                 }
-
-            }} className="hamburger">
-                <i >{button}</i>
-
-            </button>
-            {show ? <Menu /> : (null)}
+            }}>Toggle</button>
+            <div className='sidebar' style={{ width: width }}>
+                <ul >
+                    <li>
+                        <NavLink to='/' replace={true} >Chat</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/register' replace={true} >Register</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/login' replace={true} >Login</NavLink>
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }
 function Menu() {
 
-    return (
-        <div className="sidebar">
-            <ul >
-                <li>
-                    <NavLink to='/' replace={true} >Chat</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/register' replace={true} >Register</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/login' replace={true} >Login</NavLink>
-                </li>
-            </ul>
-        </div>
-    )
+    return
+
+
 }
