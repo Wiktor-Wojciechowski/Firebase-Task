@@ -6,16 +6,19 @@ import Register from './components/Register';
 import Chat from './components/Chat';
 import PrivateRoute from './components/PrivateRoute';
 import Error404 from './components/Error404';
+import Sidebar from './components/Sidebar'
 
 import { AuthProvider } from './context/AuthContext.js'
+
+import './css/styles.css';
 
 function App() {
 
   return (
     <AuthProvider>
       <BrowserRouter>
+        <Sidebar />
         <Routes>
-
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path="/chat" element={
