@@ -18,7 +18,7 @@ export default function Sidebar() {
             <img id="burger-icon" src={source} onClick={(e) => {
 
                 if (width == '0px') {
-                    setWidth('250px')
+                    setWidth('80%')
                     setSource(iconClose)
                 } else {
                     setWidth('0px')

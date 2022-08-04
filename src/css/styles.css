@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 #app-container {
@@ -21,6 +23,28 @@
     transition: all 0.1s linear;
 }
 
+.side-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+    height: 100%;
+}
+
+.side-menu ul li {
+    display: block;
+    height: 60px;
+    text-align: center;
+
+    font-size: 48px;
+    padding: 20px;
+}
+
+.side-menu ul li a {
+    text-decoration: none;
+}
+
 #burger-icon {
     width: 60px;
     height: 60px;
@@ -32,9 +56,41 @@
 }
 
 #login-component {
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
+    margin: auto;
+    display: flex;
+    width: 80%;
+    align-items: stretch;
+
+    flex-direction: column;
 }
 
+#login-component form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#login-component form * {
+    margin: 10px 0px;
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+}
+
+label {
+    font-size: 30px;
+    display: inline-block;
+    width: 100%;
+}
+
+input {
+    height: 36px;
+    font-size: 24px;
+    width: 100%;
+}
 
 #topbar-component {
     width: 100%;
