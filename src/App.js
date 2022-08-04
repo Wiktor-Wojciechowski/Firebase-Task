@@ -12,6 +12,7 @@ import { AuthProvider } from './context/AuthContext.js'
 
 import './css/styles.css';
 import Topbar from './components/Topbar';
+import About from './components/About';
 
 function App() {
 
@@ -21,21 +22,24 @@ function App() {
         <BrowserRouter>
           <Topbar />
           <Sidebar />
-          <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path="/chat" element={
-              <PrivateRoute>
-                <Chat />
-              </PrivateRoute>
-            } />
-            <Route path="/" element={
-              <PrivateRoute>
-                <Chat />
-              </PrivateRoute>
-            } />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
+          <div className="main-component">
+            <Routes>
+              <Route path='/about' element={<About />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path="/chat" element={
+                <PrivateRoute>
+                  <Chat />
+                </PrivateRoute>
+              } />
+              <Route path="/" element={
+                <PrivateRoute>
+                  <Chat />
+                </PrivateRoute>
+              } />
+              <Route path="*" element={<Error404 />} />
+            </Routes>
+          </div>
         </BrowserRouter>
       </div>
     </AuthProvider>

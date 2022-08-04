@@ -11,7 +11,6 @@
     width: 100%;
 }
 
-
 .side-menu {
     background-color: rgb(245, 123, 75);
     position: fixed;
@@ -21,29 +20,9 @@
     height: 100%;
     overflow-x: hidden;
     transition: all 0.1s linear;
+
 }
 
-.side-menu ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-around;
-    height: 100%;
-}
-
-.side-menu ul li {
-    display: block;
-    height: 60px;
-    text-align: center;
-
-    font-size: 48px;
-    padding: 20px;
-}
-
-.side-menu ul li a {
-    text-decoration: none;
-}
 
 #burger-icon {
     width: 60px;
@@ -55,7 +34,7 @@
     z-index: 2;
 }
 
-#login-component {
+.main-component {
     min-height: calc(100vh - 60px);
     margin: auto;
     display: flex;

@@ -35,11 +35,11 @@ export default function Login() {
                 <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
                     <article>
-                        <label for="email">Email:</label>
+                        <label htmlFor="email">Email:</label>
                         <input id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} />
                     </article>
                     <article>
-                        <label for="password">Password:</label>
+                        <label htmlFor="password">Password:</label>
                         <input type="password" onChange={(e) => { setPassword(e.target.value) }} />
                     </article>
                     <input disabled={loading} type="submit" value="Submit" />
