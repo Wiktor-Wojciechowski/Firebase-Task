@@ -1,19 +1,28 @@
-import React, { useLayoutEffect, useEffect, useState } from 'react'
+import React, { useLayoutEffect, useEffect, useState, useId } from 'react'
 
 import { useAuth } from '../context/AuthContext'
 
 import { db } from '../firebase'
-import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, limit } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, limit, serverTimestamp } from 'firebase/firestore'
+
 
 export default function Chat() {
     const [text, setText] = useState('')
 
+    const { currentUser } = useAuth();
+    const uid = currentUser.uid;
+    const photoURL = currentUser.photoURL;
+
     async function sendMessage(msg) {
+
+
         try {
-            var date = new Date();
+
             const docRef = await addDoc(collection(db, "messages"), {
                 text: msg,
-                time: date
+                time: serverTimestamp(),
+                uid,
+                photoURL,
             });
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -53,6 +62,7 @@ export default function Chat() {
         getData().then(() => {
             console.log(array); setRes([array[0].text, array[0].time.toDate()])
         })
+        currentUser.photoURL = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
     }, [])
 
     return (
@@ -70,10 +80,6 @@ export default function Chat() {
         </div>
     )
 }
+function ChatMessage() {
 
-function PromiseResult(props) {
-    const [state, setState] = useState(props.result)
-    return (
-        <p>{state}</p>
-    )
 }

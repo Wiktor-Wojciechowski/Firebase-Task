@@ -6,7 +6,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'
 
 export default function Register() {
-    const { currentUser, signup } = useAuth();
+    const { currentUser, signup, updatePhoto } = useAuth();
 
     const [loading, setLoading] = useState(false)
 
@@ -21,6 +21,9 @@ export default function Register() {
         try {
             setLoading(true)
             await signup(emailRef.current.value, passRef.current.value)
+
+            updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png')
+
             navi('../');
 
         } catch (error) {

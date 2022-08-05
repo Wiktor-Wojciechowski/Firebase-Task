@@ -5,7 +5,8 @@ import { auth } from '../firebase'
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    updateProfile,
 } from 'firebase/auth'
 
 const AuthContext = createContext();
@@ -31,7 +32,9 @@ export function AuthProvider({ children }) {
     function logout() {
         return signOut(auth)
     }
-
+    function updatePhoto(picUrl) {
+        return updateProfile(auth, { photoURL: picUrl })
+    }
 
 
     useEffect(() => {
@@ -48,6 +51,8 @@ export function AuthProvider({ children }) {
         logout,
         signup,
     }
+
+    console.log(currentUser)
 
     return (
         <AuthContext.Provider value={values}>
