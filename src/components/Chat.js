@@ -27,14 +27,39 @@ export default function Chat() {
         sendMessage(text);
     }
 
-    const mensajes = []
+    const [res, setRes] = useState([])
+
+    const array = []
+    const getData = async () => {
+
+        const querySnapshot = await getDocs(collection(db, "messages"));
+
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data());
+            // var varia = res.slice();
+            // varia.push(doc.data())
+            // setRes(varia)
+
+            array.push(doc.data())
+        });
+
+
+
+    }
+
+    useEffect(() => {
+        getData().then(() => {
+            console.log(array); setRes(array)
+        })
+    }, [])
 
     return (
         <div>
             <h1>Chat</h1>
             <div className='chat-container'>
 
-
+                <p>{JSON.stringify(res)}</p>
                 <form onSubmit={handleSubmit}>
                     <input onChange={(e) => { setText(e.target.value) }}></input>
                     <button>Send</button>
@@ -42,5 +67,12 @@ export default function Chat() {
             </div>
 
         </div>
+    )
+}
+
+function PromiseResult(props) {
+    const [state, setState] = useState(props.result)
+    return (
+        <p>{state}</p>
     )
 }
