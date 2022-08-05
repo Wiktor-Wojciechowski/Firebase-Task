@@ -16,23 +16,30 @@ export default function Sidebar() {
     const menuOpen = () => {
         setWidth('80%')
         setSource(iconClose)
+
+        document.addEventListener('click', listen, true)
+
     }
     const menuClose = () => {
         setWidth('0px')
         setSource(iconBurger)
+
+        document.removeEventListener('click', listen, true)
+    }
+
+    const listen = (e) => {
+        if (e.target.id != 'burger-icon'
+            && e.target.className != 'side-menu'
+            && e.target.className != 'menu-item'
+            && e.target.className != 'menu-list') {
+            menuClose()
+        }
+        console.log(e.target.tagName)
     }
 
     useEffect(() => {
         //const sidebar = document.querySelector('.side-menu')
-        document.addEventListener('click', (e) => {
-            if (e.target.id != 'burger-icon'
-                && e.target.className != 'side-menu'
-                && e.target.className != 'menu-item'
-                && e.target.className != 'menu-list') {
-                menuClose()
-            }
-            console.log(e.target.tagName)
-        })
+
 
     }, [])
 
