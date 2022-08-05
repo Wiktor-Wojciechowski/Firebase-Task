@@ -17,7 +17,7 @@ export default function Sidebar() {
         setWidth('80%')
         setSource(iconClose)
 
-        document.addEventListener('click', listen, true)
+        document.addEventListener('click', listen, true)//capture flag (true) is required
 
     }
     const menuClose = () => {

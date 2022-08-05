@@ -52,8 +52,6 @@ export function AuthProvider({ children }) {
         signup,
     }
 
-    console.log(currentUser)
-
     return (
         <AuthContext.Provider value={values}>
             {!loading && children}
