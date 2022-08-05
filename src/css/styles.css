@@ -17,12 +17,24 @@
     top: 60px;
     left: 0px;
     width: 0;
-    height: 100%;
+    height: calc(100% - 60px);
     overflow-x: hidden;
     transition: all 0.1s linear;
 
 }
 
+.menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-item {
+    font-size: 34px;
+}
 
 #burger-icon {
     width: 60px;

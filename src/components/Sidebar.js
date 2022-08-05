@@ -54,6 +54,15 @@ export default function Sidebar() {
                     <li className='menu-item'>
                         <NavLink to='/about' replace={true} >About</NavLink>
                     </li>
+                    <li className='menu-item'>
+                        <NavLink to='/map' replace={true} >Map</NavLink>
+                    </li>
+                    <li className='menu-item'>
+                        <NavLink to='/blog' replace={true} >Blog</NavLink>
+                    </li>
+                    <li className='menu-item'>
+                        <NavLink to='/contact' replace={true} >Contact</NavLink>
+                    </li>
                     {!currentUser &&
                         <li className='menu-item'>
                             <NavLink to='/register' replace={true} >Register</NavLink>
@@ -62,6 +71,11 @@ export default function Sidebar() {
                     {!currentUser &&
                         <li className='menu-item'>
                             <NavLink to='/login' replace={true} >Login</NavLink>
+                        </li>
+                    }
+                    {currentUser &&
+                        <li className='menu-item'>
+                            <NavLink to='/account-management' replace={true} />
                         </li>
                     }
                     {currentUser &&
@@ -74,10 +88,4 @@ export default function Sidebar() {
             </div>
         </div >
     )
-}
-function Menu() {
-
-    return
-
-
 }
