@@ -36,15 +36,16 @@ export default function Chat() {
         sendMessage(text);
     }
 
+
+    //get data from db
     const [res, setRes] = useState([])
 
     const array = []
     const getData = async () => {
 
-        const q = query(collection(db, 'messages'), orderBy('time'), limit(2))
+        const q = query(collection(db, 'messages'), orderBy('time'))
 
         const querySnapshot = await getDocs(q);
-
 
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -53,14 +54,18 @@ export default function Chat() {
             // varia.push(doc.data())
             // setRes(varia)
 
-            array.push(doc.data())
+            array.push(doc)
+
+
+
         });
-        array.sort()
+        //console.log(array[0].data.text)
     }
 
     useEffect(() => {
         getData().then(() => {
-            console.log(array); setRes([array[0].text, array[0].time.toDate()])
+            console.log(array);
+            setRes(array);
         })
         currentUser.photoURL = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
     }, [])
@@ -70,16 +75,34 @@ export default function Chat() {
             <h1>Chat</h1>
             <div className='chat-container'>
 
-                <p>{JSON.stringify(res)}</p>
-                <form onSubmit={handleSubmit}>
+                {res.length > 0 && res.map(function (msg) {
+                    return (<ChatMessage key={msg.id} message={msg} />)
+                }
+
+
+                )
+                }
+
+                {/* <p>{JSON.stringify(res)}</p> */}
+
+                < form onSubmit={handleSubmit} >
                     <input onChange={(e) => { setText(e.target.value) }}></input>
                     <button>Send</button>
                 </form>
             </div>
 
-        </div>
+        </div >
     )
 }
-function ChatMessage() {
+function ChatMessage(props) {
 
+
+    var text = props.message.data().text
+    console.log(text)
+
+    return (<>
+        <div >
+            <p>{text}</p>
+        </div>
+    </>)
 }
