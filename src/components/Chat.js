@@ -3,7 +3,7 @@ import React, { useLayoutEffect, useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 
 import { db } from '../firebase'
-import { addDoc, collection, doc, getDoc, getDocs, query } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, orderBy, query, limit } from 'firebase/firestore'
 
 export default function Chat() {
     const [text, setText] = useState('')
@@ -32,7 +32,10 @@ export default function Chat() {
     const array = []
     const getData = async () => {
 
-        const querySnapshot = await getDocs(collection(db, "messages"));
+        const q = query(collection(db, 'messages'), orderBy('time'), limit(2))
+
+        const querySnapshot = await getDocs(q);
+
 
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
@@ -43,14 +46,12 @@ export default function Chat() {
 
             array.push(doc.data())
         });
-
-
-
+        array.sort()
     }
 
     useEffect(() => {
         getData().then(() => {
-            console.log(array); setRes(array)
+            console.log(array); setRes([array[0].text, array[0].time.toDate()])
         })
     }, [])
 
