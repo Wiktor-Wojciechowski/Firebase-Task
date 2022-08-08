@@ -73,10 +73,12 @@ export default function Chat() {
                 ))}
             </div>
 
-            <form onSubmit={sendMessage} >
-                <input value={text} onChange={(e) => { setText(e.target.value) }} />
-                <button>Send</button>
-            </form>
+            <div className='send-message-form'>
+                <form onSubmit={sendMessage} >
+                    <input className='message-input' value={text} onChange={(e) => { setText(e.target.value) }} />
+                    <button className='send-message-button' >Send</button>
+                </form>
+            </div>
         </div>
     )
 }
@@ -100,7 +102,7 @@ function ChatMessage(props) {
     }
 
     return (
-        <div className={messageSender}>
+        <div className={'message' + ' ' + messageSender}>
 
             <span className='time-span'>{toDate(props.date)}</span>
             <img className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>

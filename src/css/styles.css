@@ -50,7 +50,7 @@
     min-height: calc(100vh - 60px);
     margin: auto;
     display: flex;
-    width: 80%;
+    width: 100%;
     align-items: stretch;
 
     flex-direction: column;
@@ -99,12 +99,15 @@ input {
 .message-box {
     display: flex;
     flex-direction: column;
+
 }
 
 .message {
     display: flex;
     align-items: flex-start;
     min-width: 40%;
+    width: 100%;
+    margin: auto;
 
 }
 
@@ -113,14 +116,16 @@ input {
 }
 
 .time-span {
-    display: flex;
+    display: none;
     align-items: center;
     max-height: fit-content;
     height: 30px;
+
 }
 
 .message-content {
-    max-width: 70%;
+    max-width: 350px;
+
     word-wrap: break-word;
 
 }
@@ -129,4 +134,16 @@ input {
     display: flex;
     flex-direction: row-reverse;
     color: red
+}
+
+.send-message-form form {
+    display: flex;
+}
+
+.send-message-input {
+    width: 100%;
+}
+
+.send-message-button {
+    width: 20%;
 }
