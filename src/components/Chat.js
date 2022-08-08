@@ -10,7 +10,7 @@ import { deepCopy } from '@firebase/util'
 export default function Chat() {
     const { currentUser } = useAuth();
 
-    const [messages, setMessages] = useState()
+    const [messages, setMessages] = useState([])
 
     //get data
 
