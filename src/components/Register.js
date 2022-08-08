@@ -23,14 +23,14 @@ export default function Register() {
             await signup(emailRef.current.value, passRef.current.value)
 
             updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png')
-
+            setLoading(false)
             navi('../');
 
         } catch (error) {
             console.log(error)
 
         }
-        setLoading(false)
+
     }
 
     return (

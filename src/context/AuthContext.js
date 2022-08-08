@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
         return signOut(auth)
     }
     function updatePhoto(picUrl) {
-        return updateProfile(auth, { photoURL: picUrl })
+        return updateProfile(auth.currentUser, { photoURL: picUrl })
     }
 
 
@@ -50,6 +50,7 @@ export function AuthProvider({ children }) {
         login,
         logout,
         signup,
+        updatePhoto
     }
 
     return (
