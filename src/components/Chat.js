@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 import { useAuth } from '../context/AuthContext'
 
@@ -11,15 +11,17 @@ export default function Chat() {
     const { currentUser } = useAuth();
 
     const [messages, setMessages] = useState([])
-    const [change, setChange] = useState(false)
+
 
     const [text, setText] = useState('')
+
+    const scrollOnTo = useRef < HTMLInputElement | null > (null);
 
     const dbRef = collection(db, 'messages');
     const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
     //get data
 
-    console.log(currentUser.uid)
+
     const sendMessage = async (e) => {
         e.preventDefault()
         let timeSent = serverTimestamp();
@@ -31,7 +33,11 @@ export default function Chat() {
             photoURL: currentUser.photoURL,
         })
         setText('')
-
+        scrollOnTo.current.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "start"
+        })
     }
 
     useEffect(() => {
@@ -43,7 +49,9 @@ export default function Chat() {
             )
 
         })
-        console.log(currentUser.photoURL)
+
+
+
         return () => {
             unsubscribe()
         }
@@ -63,8 +71,6 @@ export default function Chat() {
 
                 {messages.map(msg => (
 
-
-
                     <ChatMessage key={msg.id}
                         senderId={msg.data.uid}
                         date={msg.data.time}
@@ -72,11 +78,12 @@ export default function Chat() {
                         text={msg.data.text} />
                 ))}
             </div>
-
+            <span ref={scrollOnTo} />
             <div className='send-message-form'>
                 <form onSubmit={sendMessage} >
                     <input className='message-input' value={text} onChange={(e) => { setText(e.target.value) }} />
                     <button className='send-message-button' >Send</button>
+
                 </form>
             </div>
         </div>
@@ -91,7 +98,7 @@ function ChatMessage(props) {
     } else {
         messageSender = 'foreign'
     }
-    console.log(props.senderId)
+
     function toDate(t) {
         var a = new Date(t * 1000);
         var hours = a.getHours().toString()

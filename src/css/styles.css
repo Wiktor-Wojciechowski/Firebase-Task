@@ -52,7 +52,7 @@
     display: flex;
     width: 100%;
     align-items: stretch;
-
+    max-height: 100%;
     flex-direction: column;
 }
 
@@ -99,7 +99,8 @@ input {
 .message-box {
     display: flex;
     flex-direction: column;
-
+    overflow-y: scroll;
+    height: 90vh;
 }
 
 .message {
