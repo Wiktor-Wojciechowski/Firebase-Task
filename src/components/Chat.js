@@ -5,37 +5,38 @@ import { useAuth } from '../context/AuthContext'
 
 import { db } from '../firebase'
 import { collection, onSnapshot } from 'firebase/firestore'
+import { deepCopy } from '@firebase/util'
 
 export default function Chat() {
     const { currentUser } = useAuth();
 
-    const [message, setMessage] = useState('')
-
-    const [messages, setMessages] = useState([])
-
-    const messagesRef = collection(db, 'messages')
-
-    var items = []
+    const [messages, setMessages] = useState()
 
     //get data
-    const getData = async () => {
-        onSnapshot(messagesRef, (snapshot) => {
-            items = []
-            snapshot.docs.forEach((doc) => {
-                items.push({ ...doc.data(), id: doc.id })
-            })
-            console.log(items)
-            return items
-        })
+
+
+    const sendMessage = () => {
+
     }
 
     useEffect(() => {
-        getData().then(() => {
-            setMessages(items)
+        const unsubscribe = onSnapshot(collection(db, 'messages'), snapshot => {
+            setMessages(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })))
         })
+        return () => {
+            unsubscribe()
+        }
     }, [])
 
     return (
-        <div>{message}</div>
+        <div>
+            {messages.map(msg => (
+                <div key={msg.id}>{msg.id}, {msg.data.text}</div>
+            ))}
+            <form >
+                <input />
+                <button>Send</button>
+            </form>
+        </div>
     )
 }
