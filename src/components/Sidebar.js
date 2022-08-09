@@ -82,7 +82,7 @@ export default function Sidebar() {
                     }
                     {currentUser &&
                         <li className='menu-item'>
-                            <NavLink to='/account-management' replace={true} />
+                            <NavLink to='/account-settings' replace={true} >Account Settings</NavLink>
                         </li>
                     }
                     {currentUser &&

@@ -1,23 +1,24 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 //importing components
-import Topbar from './components/Topbar';
 import About from './components/About';
-import AccountManagement from './components/AccountManagement';
+import AccountSettings from './components/AccountSettings';
 import Blog from './components/Blog';
-import Login from './components/Login';
-import Register from './components/Register';
 import Chat from './components/Chat';
-import PrivateRoute from './components/PrivateRoute';
+import Contact from './components/Contact';
 import Error404 from './components/Error404';
-import Sidebar from './components/Sidebar'
+import Login from './components/Login';
 import Map from './components/Map';
+import PrivateRoute from './components/PrivateRoute';
+import Register from './components/Register';
+import Sidebar from './components/Sidebar'
+import Topbar from './components/Topbar';
 
 //importing context
 import { AuthProvider } from './context/AuthContext.js'
 
 import './css/styles.css';
-import Contact from './components/Contact';
+
 
 
 function App() {
@@ -46,9 +47,9 @@ function App() {
                   <Chat />
                 </PrivateRoute>
               } />
-              <Route path='/account-management' element={
+              <Route path='/account-settings' element={
                 <PrivateRoute>
-                  <AccountManagement />
+                  <AccountSettings />
                 </PrivateRoute>
               } />
               <Route path="*" element={<Error404 />} />

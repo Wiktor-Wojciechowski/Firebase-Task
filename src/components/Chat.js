@@ -23,22 +23,21 @@ export default function Chat() {
 
 
     const sendMessage = async (e) => {
-
         e.preventDefault()
 
+        if (text.length > 0 && text.length <= 500) {
 
+            let timeSent = serverTimestamp();
 
-        let timeSent = serverTimestamp();
-
-        addDoc(dbRef, {
-            text: text,
-            time: timeSent,
-            uid: currentUser.uid,
-            username: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-        })
-        setText('')
-
+            addDoc(dbRef, {
+                text: text,
+                time: timeSent,
+                uid: currentUser.uid,
+                username: currentUser.displayName,
+                photoURL: currentUser.photoURL,
+            })
+            setText('')
+        }
     }
 
     useEffect(() => {
@@ -92,7 +91,8 @@ export default function Chat() {
 
             <div className='send-message-form'>
                 <form onSubmit={sendMessage} >
-                    <input className='message-input' value={text} onChange={(e) => { setText(e.target.value) }} />
+                    <input className='message-input' value={text} onChange={(e) => { setText(e.target.value) }} maxLength={500} />
+                    <div className='counter' >{text.length}/500</div>
                     <button className='send-message-button' >Send</button>
 
                 </form>
