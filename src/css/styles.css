@@ -47,12 +47,12 @@
 }
 
 .main-component {
-    min-height: calc(100vh - 60px);
+    height: calc(100vh-60px);
     margin: auto;
     display: flex;
     width: 100%;
     align-items: stretch;
-    max-height: 100%;
+
     flex-direction: column;
 }
 
@@ -96,55 +96,34 @@ input {
     height: 30px;
 }
 
+.chat-component {
+    background-color: red;
+    position: relative;
+
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+
 .message-box {
-    display: flex;
-    flex-direction: column;
+    background-color: rgb(4, 77, 77);
+    height: calc(100vh - 120px);
     overflow-y: scroll;
-    height: 90vh;
 }
 
-.message {
-    display: flex;
-    align-items: flex-start;
-    min-width: 40%;
+.send-message-form {
+    height: 60px;
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    margin: auto;
-
-}
-
-.message>* {
-    margin: 8px;
-}
-
-.time-span {
-    display: none;
-    align-items: center;
-    max-height: fit-content;
-    height: 30px;
-
-}
-
-.message-content {
-    max-width: 350px;
-
-    word-wrap: break-word;
-
-}
-
-.owner {
-    display: flex;
-    flex-direction: row-reverse;
-    color: red
 }
 
 .send-message-form form {
     display: flex;
-}
-
-.send-message-input {
+    height: 100%;
     width: 100%;
+    justify-content: center;
 }
 
-.send-message-button {
-    width: 20%;
+.send-message-form form * {
+    height: 100%;
 }

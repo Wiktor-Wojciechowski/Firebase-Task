@@ -15,7 +15,7 @@ export default function Chat() {
 
     const [text, setText] = useState('')
 
-    const scrollOnTo = useRef < HTMLInputElement | null > (null);
+    const scrollOnTo = document.querySelector('.scroll-onto');
 
     const dbRef = collection(db, 'messages');
     const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
@@ -33,7 +33,7 @@ export default function Chat() {
             photoURL: currentUser.photoURL,
         })
         setText('')
-        scrollOnTo.current.scrollIntoView({
+        scrollOnTo.scrollIntoView({
             behavior: "smooth",
             block: "nearest",
             inline: "start"
@@ -58,7 +58,7 @@ export default function Chat() {
     }, [])
 
     return (
-        <div >
+        <div className='chat-component'>
             <div className='message-box'>
                 {/* {messages.map(msg => (
                 <div key={msg.id}>{
@@ -77,8 +77,9 @@ export default function Chat() {
                         picture={msg.data.photoURL}
                         text={msg.data.text} />
                 ))}
+                <span className='scroll-onto' />
             </div>
-            <span ref={scrollOnTo} />
+
             <div className='send-message-form'>
                 <form onSubmit={sendMessage} >
                     <input className='message-input' value={text} onChange={(e) => { setText(e.target.value) }} />
