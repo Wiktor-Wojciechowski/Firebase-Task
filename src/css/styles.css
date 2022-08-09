@@ -63,17 +63,6 @@
     margin: auto;
 }
 
-#login-component form {
-    display: flex;
-    flex-direction: column;
-
-}
-
-#login-component form>* {
-    margin: 20px 0px;
-
-}
-
 h1 {
     font-size: 60px;
     text-align: center;
@@ -88,7 +77,7 @@ label {
 input {
     height: 36px;
     font-size: 24px;
-    width: 100%;
+    width: 80%;
 }
 
 #topbar-component {
@@ -105,7 +94,6 @@ input {
 }
 
 .chat-component {
-    background-color: red;
     height: calc(100vh - 60px);
     overflow: auto;
 }
@@ -175,6 +163,7 @@ input {
 
 .send-message-form form {
     display: flex;
+    flex-direction: row;
     height: 100%;
     width: 100%;
     justify-content: center;
@@ -201,12 +190,53 @@ input {
     margin: auto;
 }
 
-.register-component form {
+.account-settings-component {
     display: flex;
+    margin: auto;
     flex-direction: column;
-    width: 90%;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 
-.register-component form>* {
-    margin: 20px 0;
+.avatar {
+    width: 300px;
+    height: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+form article {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.avatar-container {
+    width: 300px;
+    height: 300px;
+}
+
+.edit-button {
+    display: none;
+    position: relative;
+    left: 250px;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+
+}
+
+.avatar:hover+.edit-button {
+    display: block;
+}
+
+.edit-button:hover {
+    display: block;
 }
