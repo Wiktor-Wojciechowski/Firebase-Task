@@ -15,23 +15,17 @@ export default function Chat() {
 
     const [text, setText] = useState('')
 
-
-
-
     const dbRef = collection(db, 'messages');
     const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
     //get data
+
 
 
     const sendMessage = async (e) => {
 
         e.preventDefault()
 
-        const scrollOnTo = document.querySelector('.scroll-onto');
-        scrollOnTo.scrollIntoView({
-            block: "end",
-            behavior: "smooth"
-        });
+
 
         let timeSent = serverTimestamp();
 
@@ -55,14 +49,18 @@ export default function Chat() {
 
         })
 
-
-
-
-
         return () => {
             unsubscribe()
         }
     }, [])
+
+    useEffect(() => {
+        var s = document.querySelector('.scroll-onto')
+        console.log(s)
+        s.scrollIntoView()
+
+        console.log(document.querySelector('.message-input'))
+    }, [messages])
 
     return (
         <div className='chat-component'>
@@ -80,6 +78,7 @@ export default function Chat() {
 
                     <ChatMessage key={msg.id}
                         senderId={msg.data.uid}
+                        username={msg.data.displayName || 'username'}
                         date={msg.data.time}
                         picture={msg.data.photoURL}
                         text={msg.data.text} />
@@ -120,7 +119,7 @@ function ChatMessage(props) {
         <div className={'message' + ' ' + messageSender}>
 
             <span className='time-span'>{toDate(props.date)}</span>
-            <img className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+            <img title={props.username} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
             <p className='message-content'>{props.text}</p>
 
         </div>

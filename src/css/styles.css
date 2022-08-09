@@ -20,7 +20,7 @@
     height: calc(100% - 60px);
     overflow-x: hidden;
     transition: all 0.1s linear;
-
+    z-index: 2;
 }
 
 .menu-list {
@@ -30,6 +30,8 @@
     justify-content: space-around;
     align-items: center;
     height: 100%;
+
+
 }
 
 .menu-item {
@@ -98,34 +100,54 @@ input {
 
 .chat-component {
     background-color: red;
-    position: relative;
-
     height: calc(100vh - 60px);
     overflow: auto;
 }
 
 .message-box {
     background-color: rgb(4, 77, 77);
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     overflow-y: scroll;
-    display: flex;
+
     flex-direction: column;
 }
 
 .message {
     display: flex;
-    min-height: 50px;
+    align-items: flex-start;
+    min-height: 40px
+}
+
+.message>* {
+    margin: 2px 3px;
+}
+
+.time-span {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    max-height: fit-content;
+    height: 30px;
+
+}
+
+.message-content {
+    max-width: 65%;
+    word-break: break-all;
+    font-size: 20px;
 }
 
 .owner {
-    color: red;
+    color: rgb(255, 104, 104);
+    flex-direction: row-reverse;
 }
 
 .send-message-form {
-    height: 60px;
+    height: 40px;
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 0;
 }
 
 .send-message-form form {
@@ -137,4 +159,8 @@ input {
 
 .send-message-form form * {
     height: 100%;
+}
+
+.message-input {
+    font-size: 16px;
 }
