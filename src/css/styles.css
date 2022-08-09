@@ -108,6 +108,17 @@ input {
     background-color: rgb(4, 77, 77);
     height: calc(100vh - 120px);
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    display: flex;
+    min-height: 50px;
+}
+
+.owner {
+    color: red;
 }
 
 .send-message-form {

@@ -15,7 +15,8 @@ export default function Chat() {
 
     const [text, setText] = useState('')
 
-    const scrollOnTo = document.querySelector('.scroll-onto');
+
+
 
     const dbRef = collection(db, 'messages');
     const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
@@ -23,7 +24,15 @@ export default function Chat() {
 
 
     const sendMessage = async (e) => {
+
         e.preventDefault()
+
+        const scrollOnTo = document.querySelector('.scroll-onto');
+        scrollOnTo.scrollIntoView({
+            block: "end",
+            behavior: "smooth"
+        });
+
         let timeSent = serverTimestamp();
 
         addDoc(dbRef, {
@@ -33,11 +42,7 @@ export default function Chat() {
             photoURL: currentUser.photoURL,
         })
         setText('')
-        scrollOnTo.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "start"
-        })
+
     }
 
     useEffect(() => {
@@ -49,6 +54,8 @@ export default function Chat() {
             )
 
         })
+
+
 
 
 
