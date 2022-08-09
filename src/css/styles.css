@@ -58,14 +58,20 @@
     flex-direction: column;
 }
 
+#login-component {
+    width: 400px;
+    margin: auto;
+}
+
 #login-component form {
     display: flex;
     flex-direction: column;
 
 }
 
-#login-component form * {
-    margin: 10px 0px;
+#login-component form>* {
+    margin: 20px 0px;
+
 }
 
 h1 {
@@ -134,12 +140,28 @@ input {
 .message-content {
     max-width: 65%;
     word-break: break-all;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .owner {
     color: rgb(255, 104, 104);
     flex-direction: row-reverse;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.username::after {
+    content: ":";
+}
+
+.owner>.username::before {
+    content: ": ";
+}
+
+.owner>.username::after {
+    content: "";
 }
 
 .send-message-form {
@@ -163,4 +185,23 @@ input {
 
 .message-input {
     font-size: 16px;
+}
+
+.register-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+}
+
+.register-component form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.register-component form>* {
+    margin: 20px 0;
 }

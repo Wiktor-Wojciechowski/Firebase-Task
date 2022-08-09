@@ -35,6 +35,9 @@ export function AuthProvider({ children }) {
     function updatePhoto(picUrl) {
         return updateProfile(auth.currentUser, { photoURL: picUrl })
     }
+    function updateUsername(username) {
+        return updateProfile(auth.currentUser, { displayName: username })
+    }
 
 
     useEffect(() => {
@@ -50,7 +53,8 @@ export function AuthProvider({ children }) {
         login,
         logout,
         signup,
-        updatePhoto
+        updatePhoto,
+        updateUsername,
     }
 
     return (

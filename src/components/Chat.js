@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext'
 import { db } from '../firebase'
 import { addDoc, collection, onSnapshot, orderBy, query, limit, serverTimestamp, limitToLast } from 'firebase/firestore'
 
+import { auth } from '../firebase'
 
 export default function Chat() {
     const { currentUser } = useAuth();
@@ -33,6 +34,7 @@ export default function Chat() {
             text: text,
             time: timeSent,
             uid: currentUser.uid,
+            username: currentUser.displayName,
             photoURL: currentUser.photoURL,
         })
         setText('')
@@ -56,11 +58,13 @@ export default function Chat() {
 
     useEffect(() => {
         var s = document.querySelector('.scroll-onto')
-        console.log(s)
+
         s.scrollIntoView()
 
         console.log(document.querySelector('.message-input'))
     }, [messages])
+
+    console.log(currentUser.displayName);
 
     return (
         <div className='chat-component'>
@@ -78,7 +82,7 @@ export default function Chat() {
 
                     <ChatMessage key={msg.id}
                         senderId={msg.data.uid}
-                        username={msg.data.displayName || 'username'}
+                        username={msg.data.username}
                         date={msg.data.time}
                         picture={msg.data.photoURL}
                         text={msg.data.text} />
@@ -119,7 +123,8 @@ function ChatMessage(props) {
         <div className={'message' + ' ' + messageSender}>
 
             <span className='time-span'>{toDate(props.date)}</span>
-            <img title={props.username} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+            <img className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+            <span className='username' >{props.username}</span>
             <p className='message-content'>{props.text}</p>
 
         </div>
