@@ -59,10 +59,10 @@ export default function Sidebar() {
                         <NavLink to='/' replace={true} >Chat</NavLink>
                     </li>
                     <li className='menu-item'>
-                        <NavLink to='/about' replace={true} >About</NavLink>
+                        <NavLink to='/map' replace={true} >Map</NavLink>
                     </li>
                     <li className='menu-item'>
-                        <NavLink to='/map' replace={true} >Map</NavLink>
+                        <NavLink to='/about' replace={true} >About</NavLink>
                     </li>
                     <li className='menu-item'>
                         <NavLink to='/blog' replace={true} >Blog</NavLink>

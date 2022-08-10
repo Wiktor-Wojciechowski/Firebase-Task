@@ -1,8 +1,24 @@
+:root {
+
+
+    --color0: #0d1b2a;
+    --color1: #1b263b;
+    --color2: #415a77;
+    --color3: #778da9;
+    --color4: #e0e1dd;
+
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color4);
+    color: var(--color0);
 }
 
 #app-container {
@@ -12,7 +28,7 @@
 }
 
 .side-menu {
-    background-color: rgb(245, 123, 75);
+    background-color: var(--color3);
     position: fixed;
     top: 60px;
     left: 0px;
@@ -21,13 +37,13 @@
     overflow-x: hidden;
     transition: all 0.1s linear;
     z-index: 2;
+    box-shadow: 1px 5px 10px;
 }
 
 .menu-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     height: 100%;
 
@@ -35,7 +51,19 @@
 }
 
 .menu-item {
-    font-size: 34px;
+    font-size: 30px;
+    padding: 10px;
+    width: 80%;
+    border-bottom: solid 1px var(--color4);
+}
+
+.menu-item a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color4);
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
 }
 
 #burger-icon {
@@ -49,41 +77,46 @@
 }
 
 .main-component {
-    height: calc(100vh-60px);
+    height: calc(100vh - 60px);
     margin: auto;
-    display: flex;
     width: 100%;
-    align-items: stretch;
-
+    display: flex;
     flex-direction: column;
 }
 
-#login-component {
-    width: 400px;
-    margin: auto;
-}
+
 
 h1 {
-    font-size: 60px;
+    font-size: 40px;
     text-align: center;
+    margin: 20px;
 }
 
 label {
-    font-size: 30px;
+    font-size: 18px;
     display: inline-block;
     width: 100%;
+    margin: 5px 0;
 }
 
 input {
     height: 36px;
-    font-size: 24px;
-    width: 80%;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 3px;
+    border: 1px solid var(--color1);
+}
+
+input[type="submit"] {
+    max-width: 200px;
 }
 
 #topbar-component {
     width: 100%;
     min-height: 60px;
-    background-color: skyblue;
+    background-color: var(--color2);
+    box-shadow: 0px 0px 10px #0d1b2a;
     position: sticky;
     top: 0;
 }
@@ -99,14 +132,14 @@ input {
 }
 
 .message-box {
-    background-color: rgb(4, 77, 77);
-    height: calc(100vh - 100px);
-    overflow-y: scroll;
 
+    height: calc(100vh - 120px);
+    overflow-y: scroll;
     flex-direction: column;
 }
 
 .message {
+
     display: flex;
     align-items: flex-start;
     min-height: 40px
@@ -118,7 +151,7 @@ input {
 
 .time-span {
     display: flex;
-    font-size: 12px;
+    font-size: 18px;
     align-items: center;
     max-height: fit-content;
     height: 30px;
@@ -126,15 +159,24 @@ input {
 }
 
 .message-content {
+    background-color: var(--color3);
+    border-radius: 6px;
+    padding: 8px;
+    line-height: 1.5em;
+
     max-width: 65%;
-    word-break: break-all;
-    font-size: 15px;
-    text-align: justify;
+    overflow-wrap: break-word;
+    font-size: 18px;
+    text-align: left;
 }
 
 .owner {
-    color: rgb(255, 104, 104);
     flex-direction: row-reverse;
+}
+
+.owner .message-content {
+    background-color: var(--color2);
+    color: var(--color4);
 }
 
 .username {
@@ -154,40 +196,40 @@ input {
 }
 
 .send-message-form {
-    height: 40px;
+    height: 60px;
     position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 0;
+    padding: 1px;
 }
 
 .send-message-form form {
     display: flex;
+    margin: auto;
     flex-direction: row;
     height: 100%;
-    width: 100%;
+    width: 80%;
     justify-content: center;
+    align-items: center;
 }
 
-.send-message-form form * {
-    height: 100%;
-}
+
 
 .message-input {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .counter {
-    width: 60px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.register-component {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    margin: auto;
+.send-message-button {
+    width: 80px;
+    height: 90%;
 }
 
 .account-settings-component {
@@ -196,7 +238,19 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 60px);
+    width: 300px;
+}
+
+.settings {
+    width: 100%;
+}
+
+.settings article span {
+    display: flex;
+}
+
+.settings article {
+    margin: 10px 0;
 }
 
 .avatar {
@@ -208,14 +262,16 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+
 
 }
 
 form article {
-    width: 100%;
     display: flex;
+    flex-direction: column;
+    width: 80%;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .avatar-container {

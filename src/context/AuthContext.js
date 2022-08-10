@@ -9,6 +9,9 @@ import {
     updateProfile,
 } from 'firebase/auth'
 
+import { db } from '../firebase'
+import { addDoc, collection } from 'firebase/firestore'
+
 const AuthContext = createContext();
 
 //export context
@@ -38,7 +41,11 @@ export function AuthProvider({ children }) {
     function updateUsername(username) {
         return updateProfile(auth.currentUser, { displayName: username })
     }
-
+    function addActiveUser(uid) {
+        return addDoc(collection(db, 'active-users'), {
+            id: uid
+        })
+    }
 
     useEffect(() => {
         const uns = auth.onAuthStateChanged((user) => {
@@ -55,6 +62,8 @@ export function AuthProvider({ children }) {
         signup,
         updatePhoto,
         updateUsername,
+        addActiveUser,
+
     }
 
     return (

@@ -12,27 +12,29 @@ export default function AccountSettings() {
     const usernameRef = useRef()
 
     function updateName() {
-        updateUsername(usernameRef.current.value)
+        try {
+            updateUsername(usernameRef.current.value)
+        } catch (err) {
+            alert(err);
+        }
+
     }
 
     return (
         <div className='account-settings-component' >
             <div className='avatar-container'><img className='avatar' src={currentUser.photoURL}></img><img className='edit-button' src={editIcon}></img></div>
-            <div className='settings-form'>
+            <div className='settings'>
                 <article>
-                    <label htmlFor='username-change'>Change Username</label>
-                    <input ref={usernameRef} defaultValue={currentUser.displayName} id="username-change"></input><button onClick={updateName} ><img src={editIcon}></img></button>
-
+                    <label>Username:</label>
+                    <span><input defaultValue={currentUser.displayName} ref={usernameRef} ></input><button onClick={updateName}>Save</button></span>
                 </article>
                 <article>
-                    <label htmlFor='username-change'>Change Email</label>
-                    <input defaultValue={currentUser.email} id="email-change"></input><button><img src={editIcon}></img></button>
-
+                    <label>Email:</label>
+                    <span><input defaultValue={currentUser.email}></input><button>Save</button></span>
                 </article>
                 <article>
-                    <label htmlFor='username-change'>Change Password</label>
-                    <input id="password-change"></input><button><img src={editIcon}></img></button>
-
+                    <label>Password:</label>
+                    <span><input type="password" ></input><button>Save</button></span>
                 </article>
             </div>
         </div>
