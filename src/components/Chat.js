@@ -124,7 +124,7 @@ function ChatMessage(props) {
 
             <span className='time-span'>{toDate(props.date)}</span>
             <img className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
-            {/*<span className='username' >{props.username}</span>*/}
+            <span className='username' >{props.username}</span>
             <p className='message-content'>{props.text}</p>
 
         </div>

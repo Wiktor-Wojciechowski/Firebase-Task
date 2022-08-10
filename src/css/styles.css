@@ -66,6 +66,15 @@ body {
     white-space: nowrap;
 }
 
+.logout-button button {
+
+    margin-top: 30px;
+    width: 80px;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+}
+
 #burger-icon {
     width: 60px;
     height: 60px;
@@ -142,7 +151,8 @@ input[type="submit"] {
 
     display: flex;
     align-items: flex-start;
-    min-height: 40px
+    min-height: 40px;
+    flex-wrap: wrap;
 }
 
 .message>* {
@@ -170,15 +180,6 @@ input[type="submit"] {
     text-align: left;
 }
 
-.owner {
-    flex-direction: row-reverse;
-}
-
-.owner .message-content {
-    background-color: var(--color2);
-    color: var(--color4);
-}
-
 .username {
     font-weight: bold;
 }
@@ -187,13 +188,23 @@ input[type="submit"] {
     content: ":";
 }
 
-.owner>.username::before {
+.owner .message-content {
+    background-color: var(--color2);
+    color: var(--color4);
+}
+
+/*
+.owner {
+    flex-direction: row-reverse;
+}
+
+ .owner>.username::before {
     content: ": ";
 }
 
 .owner>.username::after {
     content: "";
-}
+} */
 
 .send-message-form {
     height: 60px;

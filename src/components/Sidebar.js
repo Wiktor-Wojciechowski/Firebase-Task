@@ -34,7 +34,7 @@ export default function Sidebar() {
             && e.target.className != 'menu-list') {
             menuClose()
         }
-        console.log(e.target.tagName)
+        //console.log(e.target.tagName)
     }
 
     useEffect(() => {
@@ -86,7 +86,7 @@ export default function Sidebar() {
                         </li>
                     }
                     {currentUser &&
-                        <div onClick={async () => {
+                        <div className='logout-button' onClick={async () => {
                             updateLogState(currentUser.uid, false).then(() => {
                                 logout()
                             })
