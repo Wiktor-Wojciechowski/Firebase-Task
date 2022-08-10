@@ -10,7 +10,7 @@ import {
 } from 'firebase/auth'
 
 import { db } from '../firebase'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -42,9 +42,12 @@ export function AuthProvider({ children }) {
         return updateProfile(auth.currentUser, { displayName: username })
     }
     function addActiveUser(uid) {
-        return addDoc(collection(db, 'active-users'), {
-            id: uid
+        return setDoc(doc(db, "active-users", uid), {
+            userId: uid
         })
+    }
+    function removeActiveUser(uid) {
+        return deleteDoc(doc(db, 'active-users', uid))
     }
 
     useEffect(() => {
@@ -63,6 +66,7 @@ export function AuthProvider({ children }) {
         updatePhoto,
         updateUsername,
         addActiveUser,
+        removeActiveUser,
 
     }
 

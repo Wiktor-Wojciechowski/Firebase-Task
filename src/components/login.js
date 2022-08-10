@@ -25,8 +25,6 @@ export default function Login() {
                 await addActiveUser(userCredential.user.uid)
             })
 
-
-
             navi('../');
 
         } catch (error) {
