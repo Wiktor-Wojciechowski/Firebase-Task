@@ -35,17 +35,16 @@ export default function AccountSettings() {
                     <label>Email:</label>
                     <span><input defaultValue={currentUser.email}></input><button>Save</button></span>
                 </article>
-                <article>
-                    <label>Password:</label>
-                    <span><input type="password" ></input><button>Save</button></span>
-                </article>
-                <button onClick={() => {
-                    if (window.confirm('Are you sure?')) {
-                        deleteDoc(doc(db, 'users', currentUser.uid)).then(
-                            removeUser(currentUser.uid)
-                        )
-                    }
-                }}>Delete Account</button>
+                <div className='settings-buttons'>
+                    <button>Reset Password</button>
+                    <button className='delete-account-button' onClick={() => {
+                        if (window.confirm('Are you sure you want to delete your account?')) {
+                            deleteDoc(doc(db, 'users', currentUser.uid)).then(
+                                removeUser(currentUser.uid)
+                            )
+                        }
+                    }}>Delete Account</button>
+                </div>
             </div>
         </div >
     )

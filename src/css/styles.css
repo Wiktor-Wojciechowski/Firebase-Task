@@ -264,6 +264,29 @@ input[type="submit"] {
     margin: 10px 0;
 }
 
+.settings-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.settings-buttons button {
+    width: 100%;
+    margin: 10px;
+    height: 36px;
+}
+
+.delete-account-button {
+    border: 1px solid red;
+    color: red;
+}
+
+.delete-account-button:hover {
+    color: white;
+    background-color: red;
+}
+
 .avatar {
     width: 300px;
     height: 300px;
