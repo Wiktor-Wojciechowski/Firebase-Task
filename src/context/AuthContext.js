@@ -4,13 +4,14 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase'
 import {
     createUserWithEmailAndPassword,
+    deleteUser,
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
 } from 'firebase/auth'
 
 import { db } from '../firebase'
-import { addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
+import { updateDoc, addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -39,15 +40,29 @@ export function AuthProvider({ children }) {
         return updateProfile(auth.currentUser, { photoURL: picUrl })
     }
     function updateUsername(username) {
-        return updateProfile(auth.currentUser, { displayName: username })
-    }
-    function addActiveUser(uid) {
-        return setDoc(doc(db, "active-users", uid), {
-            userId: uid
+        return updateProfile(auth.currentUser, { displayName: username }).then(() => {
+            updateDoc(doc(db, 'users', auth.currentUser.uid), {
+                username: auth.currentUser.displayName
+            })
         })
     }
-    function removeActiveUser(uid) {
-        return deleteDoc(doc(db, 'active-users', uid))
+    function addUser(uid) {
+        return setDoc(doc(db, 'users', uid), {
+            userId: uid,
+            loggedIn: true
+        })
+    }
+    function removeUser(uid) {
+        return signOut(auth).then(() => {
+            deleteDoc(doc(db, 'users', uid)).then(() => {
+                deleteUser(currentUser)
+            })
+        })
+    }
+    function updateLogState(uid, bool) {
+        return updateDoc(doc(db, 'users', uid), {
+            loggedIn: bool
+        })
     }
 
     useEffect(() => {
@@ -65,9 +80,9 @@ export function AuthProvider({ children }) {
         signup,
         updatePhoto,
         updateUsername,
-        addActiveUser,
-        removeActiveUser,
-
+        addUser,
+        removeUser,
+        updateLogState,
     }
 
     return (

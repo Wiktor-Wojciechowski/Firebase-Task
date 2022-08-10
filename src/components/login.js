@@ -8,7 +8,7 @@ import { db } from '../firebase';
 import { collection } from 'firebase/firestore';
 
 export default function Login() {
-    const { currentUser, login, addActiveUser } = useAuth();
+    const { currentUser, login, updateLogState } = useAuth();
     const [loading, setLoading] = useState(false)
 
     const [email, setEmail] = useState('')
@@ -22,10 +22,11 @@ export default function Login() {
         try {
             setLoading(true)
             await login(email, password).then(async (userCredential) => {
-                await addActiveUser(userCredential.user.uid)
+                await updateLogState(userCredential.user.uid, true)
+                navi('../');
             })
 
-            navi('../');
+
 
         } catch (error) {
             console.log(error)

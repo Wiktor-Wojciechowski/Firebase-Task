@@ -8,7 +8,7 @@ import iconClose from '../images/close_black_24dp.svg'
 import iconBurger from '../images/menu_black_24dp.svg'
 
 export default function Sidebar() {
-    const { currentUser, logout, removeActiveUser } = useAuth();
+    const { currentUser, logout, updateLogState } = useAuth();
 
     const [width, setWidth] = useState('0px');
     const [source, setSource] = useState(iconBurger)
@@ -87,9 +87,10 @@ export default function Sidebar() {
                     }
                     {currentUser &&
                         <div onClick={async () => {
-                            removeActiveUser(currentUser.uid).then(() => {
+                            updateLogState(currentUser.uid, false).then(() => {
                                 logout()
                             })
+
 
                         }}>
                             <button>Log Out</button>

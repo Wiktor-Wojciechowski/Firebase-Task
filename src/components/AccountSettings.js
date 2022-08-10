@@ -1,3 +1,4 @@
+import { deleteDoc } from 'firebase/firestore';
 import React from 'react'
 
 import { useRef } from 'react';
@@ -5,9 +6,11 @@ import { useRef } from 'react';
 import { useAuth } from '../context/AuthContext'
 
 import editIcon from '../images/edit_pen.svg'
+import { doc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function AccountSettings() {
-    const { currentUser, updateUsername, updatePhoto } = useAuth();
+    const { currentUser, updateUsername, updatePhoto, removeUser } = useAuth();
 
     const usernameRef = useRef()
 
@@ -36,7 +39,14 @@ export default function AccountSettings() {
                     <label>Password:</label>
                     <span><input type="password" ></input><button>Save</button></span>
                 </article>
+                <button onClick={() => {
+                    if (window.confirm('Are you sure?')) {
+                        deleteDoc(doc(db, 'users', currentUser.uid)).then(
+                            removeUser(currentUser.uid)
+                        )
+                    }
+                }}>Delete Account</button>
             </div>
-        </div>
+        </div >
     )
 }

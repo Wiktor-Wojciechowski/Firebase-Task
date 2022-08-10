@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'
 
 export default function Register() {
-    const { currentUser, signup, updatePhoto, updateUsername } = useAuth();
+    const { currentUser, signup, updatePhoto, updateUsername, addUser } = useAuth();
 
     const [loading, setLoading] = useState(false)
 
@@ -19,20 +19,24 @@ export default function Register() {
 
     async function handleSubmit(event) {
         event.preventDefault();
-
+        const username = usernameRef.current.value
         try {
             setLoading(true)
-            await signup(emailRef.current.value, passRef.current.value).then(() => {
-                updateUsername(usernameRef.current.value).then(() => {
-                    updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png')
+            await signup(emailRef.current.value, passRef.current.value).then(async (userCredential) => {
+                await addUser((userCredential.user.uid)).then(() => {
+                    updateUsername(username).then(() => {
+                        updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png').then(() => {
+                            setLoading(false)
+                            navi('../');
+                        })
+                    })
                 })
             })
 
 
 
 
-            setLoading(false)
-            navi('../');
+
 
         } catch (error) {
             console.log(error)
@@ -48,15 +52,15 @@ export default function Register() {
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
                     <article>
-                        <label for="username-input">Username:</label>
+                        <label htmlFor="username-input">Username:</label>
                         <input id="username-input" ref={usernameRef} required />
                     </article>
                     <article>
-                        <label for="email-input">Email:</label>
+                        <label htmlFor="email-input">Email:</label>
                         <input id="email-input" type="email" ref={emailRef} required />
                     </article>
                     <article>
-                        <label for="password-input">Password:</label>
+                        <label htmlFor="password-input">Password:</label>
                         <input id="password-input" type="password" ref={passRef} required />
                     </article>
                     <input disabled={loading} type="submit" value="Submit" />
