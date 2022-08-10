@@ -33,11 +33,6 @@ export default function Register() {
                 })
             })
 
-
-
-
-
-
         } catch (error) {
             console.log(error)
             setLoading(false)
