@@ -150,6 +150,20 @@ input[type="submit"] {
 
 }
 
+.userlist-component {}
+
+.user-table {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #778da9;
+}
+
+
 .message-box {
 
     height: calc(100vh - 120px);

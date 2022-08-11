@@ -92,9 +92,15 @@ export default function Sidebar() {
                     }
                     {currentUser &&
                         <div className='logout-button' onClick={async () => {
-                            updateLogState(currentUser.uid, false).then(() => {
-                                logout()
-                            })
+                            try {
+                                await updateLogState(currentUser.uid, false).then(() => {
+                                    logout()
+                                })
+                            } catch (err) {
+                                console.log(err);
+                                logout();
+                            }
+
                         }}>
                             <button>Log Out</button>
                         </div>
