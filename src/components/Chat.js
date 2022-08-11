@@ -7,6 +7,7 @@ import { db } from '../firebase'
 import { addDoc, collection, onSnapshot, orderBy, query, limit, serverTimestamp, limitToLast } from 'firebase/firestore'
 
 import { auth } from '../firebase'
+import UserList from './UserList'
 
 export default function Chat() {
     const { currentUser } = useAuth();
@@ -97,7 +98,9 @@ export default function Chat() {
 
                 </form>
             </div>
-            <div className='users-icon' ></div>
+            <div className='users-icon' >
+                <UserList />
+            </div>
         </div>
     )
 }

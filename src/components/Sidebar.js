@@ -14,7 +14,7 @@ export default function Sidebar() {
     const [source, setSource] = useState(iconBurger)
 
     const menuOpen = () => {
-        setWidth('80%')
+        setWidth('400px')
         setSource(iconClose)
 
         document.addEventListener('click', listen, true)//capture flag (true) is required
