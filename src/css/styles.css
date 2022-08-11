@@ -82,7 +82,7 @@ body {
     top: 0;
     left: 0;
 
-    z-index: 2;
+    z-index: 101;
 }
 
 .main-component {
@@ -128,6 +128,7 @@ input[type="submit"] {
     box-shadow: 0px 0px 10px #0d1b2a;
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 .user-chat-icon {
