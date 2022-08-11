@@ -267,11 +267,15 @@ tr:nth-child(even) {
     height: 90%;
 }
 
-.main-component {}
+.map-component {
+    width: 100%;
+    height: 100%;
+}
 
+/* necessary for map to work */
 .leaflet-container {
     width: 100%;
-    height: 93vh;
+    height: 100%;
     z-index: 0;
 }
 
