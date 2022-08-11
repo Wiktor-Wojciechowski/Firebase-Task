@@ -13,6 +13,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register';
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar';
+import UserList from './components/UserList';
 
 //importing context
 import { AuthProvider } from './context/AuthContext.js'
@@ -50,6 +51,11 @@ function App() {
               <Route path='/account-settings' element={
                 <PrivateRoute>
                   <AccountSettings />
+                </PrivateRoute>
+              } />
+              <Route path='/users' element={
+                <PrivateRoute>
+                  <UserList />
                 </PrivateRoute>
               } />
               <Route path="*" element={<Error404 />} />

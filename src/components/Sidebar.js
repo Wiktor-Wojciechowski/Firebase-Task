@@ -61,6 +61,11 @@ export default function Sidebar() {
                     <li className='menu-item'>
                         <NavLink to='/map' replace={true} >Map</NavLink>
                     </li>
+                    {currentUser &&
+                        <li className='menu-item'>
+                            <NavLink to='/users' replace={true} >Users</NavLink>
+                        </li>
+                    }
                     <li className='menu-item'>
                         <NavLink to='/about' replace={true} >About</NavLink>
                     </li>
@@ -90,8 +95,6 @@ export default function Sidebar() {
                             updateLogState(currentUser.uid, false).then(() => {
                                 logout()
                             })
-
-
                         }}>
                             <button>Log Out</button>
                         </div>

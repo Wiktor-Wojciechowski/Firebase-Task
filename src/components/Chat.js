@@ -97,6 +97,7 @@ export default function Chat() {
 
                 </form>
             </div>
+            <div className='users-icon' ></div>
         </div>
     )
 }

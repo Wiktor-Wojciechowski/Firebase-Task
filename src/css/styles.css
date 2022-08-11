@@ -140,6 +140,16 @@ input[type="submit"] {
     overflow: auto;
 }
 
+.users-icon {
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+}
+
 .message-box {
 
     height: calc(100vh - 120px);
@@ -173,7 +183,6 @@ input[type="submit"] {
     border-radius: 6px;
     padding: 8px;
     line-height: 1.5em;
-
     max-width: 65%;
     overflow-wrap: break-word;
     font-size: 18px;
@@ -280,6 +289,8 @@ input[type="submit"] {
 .delete-account-button {
     border: 1px solid red;
     color: red;
+    border-radius: 4px;
+    transition: linear 0.3s;
 }
 
 .delete-account-button:hover {
