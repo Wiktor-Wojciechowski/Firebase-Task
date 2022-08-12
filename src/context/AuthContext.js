@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth'
 
 import { db } from '../firebase'
-import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
+import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -99,7 +99,7 @@ export function AuthProvider({ children }) {
         return uns
     })
 
-    const [users, setUsers] = useState(null)
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
@@ -107,10 +107,31 @@ export function AuthProvider({ children }) {
                 id: doc.id,
                 data: doc.data()
             })))
-            setLoading(false)
+
         })
         return () => {
             unsubscribe();
+        }
+    }, [])
+
+    const [messages, setMessages] = useState([])
+
+    const dbRef = collection(db, 'messages');
+
+    const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(q, snapshot => {
+            setMessages(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            }))
+            )
+
+        })
+        setLoading(false)
+        return () => {
+            unsubscribe()
         }
     }, [])
 
@@ -126,6 +147,7 @@ export function AuthProvider({ children }) {
         updateLogState,
 
         users,
+        messages
     }
 
     return (

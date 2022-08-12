@@ -10,15 +10,11 @@ import { auth } from '../firebase'
 import UserList from './UserList'
 
 export default function Chat() {
-    const { currentUser } = useAuth();
-
-    const [messages, setMessages] = useState([])
-
+    const { currentUser, messages } = useAuth();
 
     const [text, setText] = useState('')
 
-    const dbRef = collection(db, 'messages');
-    const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
+
     //get data
 
 
@@ -30,7 +26,7 @@ export default function Chat() {
 
             let timeSent = serverTimestamp();
 
-            addDoc(dbRef, {
+            addDoc(collection(db, 'messages'), {
                 text: text,
                 time: timeSent,
                 uid: currentUser.uid,
@@ -41,20 +37,7 @@ export default function Chat() {
         }
     }
 
-    useEffect(() => {
-        const unsubscribe = onSnapshot(q, snapshot => {
-            setMessages(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            }))
-            )
 
-        })
-
-        return () => {
-            unsubscribe()
-        }
-    }, [])
 
     useEffect(() => {
         var s = document.querySelector('.scroll-onto')
@@ -67,14 +50,6 @@ export default function Chat() {
     return (
         <div className='chat-component'>
             <div className='message-box'>
-                {/* {messages.map(msg => (
-                <div key={msg.id}>{
-
-
-
-                    msg.data.time ? toDate(msg.data.time) : 'sending'}, {msg.data.text
-                    }</div>
-            ))} */}
 
                 {messages.map(msg => (
 
