@@ -30,11 +30,11 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function Map() {
     const { currentUser } = useAuth();
-    const [users, setUsers] = useState([]);
+    const [userCoords, setUserCoords] = useState([]);
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-            setUsers(snapshot.docs.map(doc => ({
+            setUserCoords(snapshot.docs.map(doc => ({
                 id: doc.id,
                 data: doc.data()
             })))
@@ -51,6 +51,8 @@ export default function Map() {
     const [loading, setLoading] = useState(true);
     const [coords, setCoords] = useState();
 
+
+
     useEffect(() => {
 
         navigator.geolocation.getCurrentPosition((pos) => {
@@ -58,14 +60,13 @@ export default function Map() {
             setCoords([pos.coords.latitude, pos.coords.longitude])
 
             //upload your location and then display everyone's marks from db
-            updateDoc(doc(collection(db, 'users', currentUser.uid)), {
+            updateDoc(doc(db, 'users', currentUser.uid), {
                 latitude: pos.coords.latitude,
                 longitude: pos.coords.longitude
             })
 
             setLoading(false)
-        });
-
+        })
 
 
 
