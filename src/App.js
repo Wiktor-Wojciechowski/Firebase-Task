@@ -36,7 +36,7 @@ function App() {
               <Route path='/blog' element={<Blog />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/login' element={<Login />} />
-              <Route path='/map' element={<Map />} />
+
               <Route path='/register' element={<Register />} />
               <Route path="/chat" element={
                 <PrivateRoute>
@@ -58,6 +58,13 @@ function App() {
                   <UserList />
                 </PrivateRoute>
               } />
+
+              <Route path='/map' element={
+                <PrivateRoute>
+                  <Map />
+                </PrivateRoute>
+              } />
+
               {/*<Route path="*" element={<Error404 />} />*/}
               <Route path="/google.com" element={() => {
                 window.location.href = "google.com";

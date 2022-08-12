@@ -50,23 +50,21 @@ export default function Map() {
 
 
     const [loading, setLoading] = useState(true);
-    const [coords, setCoords] = useState();
+
 
 
 
     useEffect(() => {
-
-        navigator.geolocation.getCurrentPosition((pos) => {
-            console.log(pos.coords.latitude + ' ' + pos.coords.longitude)
-            setCoords([pos.coords.latitude, pos.coords.longitude])
+        navigator.geolocation.watchPosition((pos) => {
 
             //upload your location and then display everyone's marks from db
-            updateDoc(doc(db, 'users', currentUser.uid), {
-                latitude: pos.coords.latitude,
-                longitude: pos.coords.longitude
-            })
+            if (currentUser) {
+                updateDoc(doc(db, 'users', currentUser.uid), {
+                    latitude: pos.coords.latitude,
+                    longitude: pos.coords.longitude
+                })
+            }
 
-            setLoading(false)
         })
     }, [])
 
@@ -76,7 +74,7 @@ export default function Map() {
                 id: doc.id,
                 data: doc.data()
             })))
-
+            setLoading(false)
         })
 
         return () => {
@@ -94,27 +92,29 @@ export default function Map() {
 
                 {loading && <div style={{ margin: 'auto', position: 'absolute', top: 0, left: '50px', zIndex: 1000 }} >Loading...</div>}
 
-
-
                 {users && users.map((user) => (
-                    <MarkerContainer key={user.id} lat={user.data.latitude} long={user.data.longitude} />
+                    <MarkerContainer key={user.id} lat={user.data.latitude} long={user.data.longitude} username={user.data.username} userStatus={user.data.loggedIn} />
                 ))}
 
-                <Marker position={[51.505, -0.09]}>
+                {/* <Marker position={[51.505, -0.09]}>
                     <Popup>
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                 </Marker>
-                <Marker position={[52.505, -0.09]}></Marker>
+                <Marker position={[52.505, -0.09]}></Marker> */}
             </MapContainer>
         </div >
     )
 }
 
 function MarkerContainer(props) {
-    if (props.lat && props.long) {
+    if (props.lat && props.long && props.userStatus) {
         return (
-            <Marker position={[props.lat, props.long]} />
+            <Marker position={[props.lat, props.long]} >
+                <Popup>
+                    {props.username}
+                </Popup>
+            </Marker>
         )
     }
 }
