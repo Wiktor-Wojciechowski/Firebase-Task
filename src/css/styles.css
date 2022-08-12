@@ -91,9 +91,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+
 }
-
-
 
 h1 {
     font-size: 40px;
@@ -368,3 +367,5 @@ form article {
 .edit-button:hover {
     display: block;
 }
+
+@media (min-width:600px) {}

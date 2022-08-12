@@ -65,12 +65,8 @@ function App() {
                 </PrivateRoute>
               } />
 
-              {/*<Route path="*" element={<Error404 />} />*/}
-              <Route path="/google.com" element={() => {
-                window.location.href = "google.com";
-                return null
-              }
-              } />
+              <Route path="*" element={<Error404 />} />
+
             </Routes>
           </div>
         </BrowserRouter>

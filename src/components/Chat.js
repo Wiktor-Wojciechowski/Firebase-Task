@@ -96,9 +96,9 @@ export default function Chat() {
 
                 </form>
             </div>
-            <div className='users-icon' >
+            {/* <div className='users-icon' >
                 <UserList />
-            </div>
+            </div> */}
         </div>
     )
 }
