@@ -2,28 +2,25 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { collection, onSnapshot, doc } from 'firebase/firestore'
 import { db } from '../firebase';
+import { useAuth } from '../context/AuthContext';
 
 
 export default function UserList() {
-    const [users, setUsers] = useState([]);
-    //get users
+    const { users } = useAuth();
 
-    //ability to sort by name and logged in state
-
-    //display users
-
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-            setUsers(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-        return () => {
-            unsubscribe();
-        }
-    }, [])
-
+    /*
+        useEffect(() => {
+            const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+                setUsers(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                })))
+            })
+            return () => {
+                unsubscribe();
+            }
+        }, [])
+    */
     function showStatus(bool) {
         return bool ? 'Online' : 'Offline';
     }

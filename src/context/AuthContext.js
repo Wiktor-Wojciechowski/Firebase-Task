@@ -11,7 +11,7 @@ import {
 } from 'firebase/auth'
 
 import { db } from '../firebase'
-import { updateDoc, addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
+import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc } from 'firebase/firestore'
 
 const AuthContext = createContext();
 
@@ -94,10 +94,25 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const uns = auth.onAuthStateChanged((user) => {
             setCurrentUser(user)
-            setLoading(false)
+
         })
         return uns
     })
+
+    const [users, setUsers] = useState(null)
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+            setUsers(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+            setLoading(false)
+        })
+        return () => {
+            unsubscribe();
+        }
+    }, [])
 
     const values = {
         currentUser,
@@ -109,6 +124,8 @@ export function AuthProvider({ children }) {
         addUser,
         removeUser,
         updateLogState,
+
+        users,
     }
 
     return (

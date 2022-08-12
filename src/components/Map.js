@@ -29,21 +29,11 @@ L.Marker.prototype.options.icon = DefaultIcon;
 // }
 
 export default function Map() {
-    const { currentUser } = useAuth();
+    const { currentUser, users } = useAuth();
 
-    const [users, setUsers] = useState([])
 
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-            setUsers(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-        })
-        return () => {
-            unsubscribe();
-        }
-    }, [])
+
+
 
     const [loading, setLoading] = useState(true);
     /*
@@ -71,20 +61,21 @@ export default function Map() {
             }
         })
     */
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-            setUsers(snapshot.docs.map(doc => ({
-                id: doc.id,
-                data: doc.data()
-            })))
-            setLoading(false)
-        })
-
-        return () => {
-            unsubscribe();
-        }
-    }, [])
-
+    /*
+            useEffect(() => {
+            const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+                setUsers(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    data: doc.data()
+                })))
+                setLoading(false)
+            })
+    
+            return () => {
+                unsubscribe();
+            }
+        }, [])
+    */
     return (
         <div className='map-component' >
             <MapContainer center={[54.54, 15.19]} zoom={4} worldCopyJump={true} scrollWheelZoom={true}>
