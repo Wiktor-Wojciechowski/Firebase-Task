@@ -97,7 +97,7 @@ export default function Map() {
 
 
                 {users && users.map((user) => (
-                    <Marker key={user.id} position={[user.data.latitude, user.data.longitude]} />
+                    <MarkerContainer key={user.id} lat={user.data.latitude} long={user.data.longitude} />
                 ))}
 
                 <Marker position={[51.505, -0.09]}>
@@ -109,4 +109,12 @@ export default function Map() {
             </MapContainer>
         </div >
     )
+}
+
+function MarkerContainer(props) {
+    if (props.lat && props.long) {
+        return (
+            <Marker position={[props.lat, props.long]} />
+        )
+    }
 }
