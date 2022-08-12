@@ -7,6 +7,9 @@ import { useAuth } from '../context/AuthContext'
 import iconClose from '../images/close_black_24dp.svg'
 import iconBurger from '../images/menu_black_24dp.svg'
 
+import { doc, updateDoc } from 'firebase/firestore'
+import { db } from '../firebase'
+
 export default function Sidebar() {
     const { currentUser, logout, updateLogState } = useAuth();
 
@@ -93,8 +96,14 @@ export default function Sidebar() {
                     {currentUser &&
                         <div className='logout-button' onClick={async () => {
                             try {
-                                await updateLogState(currentUser.uid, false).then(() => {
-                                    logout()
+                                await updateLogState(currentUser.uid, false).then(async () => {
+                                    await updateDoc(doc(db, 'users', currentUser.uid), {
+                                        latitude: null,
+                                        longitude: null
+                                    }).then(() => {
+                                        logout()
+                                    })
+
                                 })
                             } catch (err) {
                                 console.log(err);

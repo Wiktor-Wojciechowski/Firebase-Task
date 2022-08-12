@@ -25,6 +25,32 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
+
+    if (auth.currentUser) {
+
+        navigator.geolocation.watchPosition((pos) => {
+
+            //upload your location and then display everyone's marks from db
+
+            updateDoc(doc(db, 'users', currentUser.uid), {
+                latitude: pos.coords.latitude,
+                longitude: pos.coords.longitude
+            })
+
+
+        }, (error) => {
+            if (error.code == error.PERMISSION_DENIED) {
+                updateDoc(doc(db, 'users', currentUser.uid), {
+                    latitude: null,
+                    longitude: null
+                })
+
+
+            }
+        })
+    }
+
+
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);
     }

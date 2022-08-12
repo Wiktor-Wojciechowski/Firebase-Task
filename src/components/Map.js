@@ -46,31 +46,31 @@ export default function Map() {
     }, [])
 
     const [loading, setLoading] = useState(true);
-
-    navigator.geolocation.watchPosition((pos) => {
-
-        //upload your location and then display everyone's marks from db
-        if (currentUser) {
-
-
-
-            updateDoc(doc(db, 'users', currentUser.uid), {
-                latitude: pos.coords.latitude,
-                longitude: pos.coords.longitude
-            })
-        }
-
-    }, (error) => {
-        if (error.code == error.PERMISSION_DENIED) {
-            updateDoc(doc(db, 'users', currentUser.uid), {
-                latitude: null,
-                longitude: null
-            })
-
-
-        }
-    })
-
+    /*
+        navigator.geolocation.watchPosition((pos) => {
+    
+            //upload your location and then display everyone's marks from db
+            if (currentUser) {
+    
+    
+    
+                updateDoc(doc(db, 'users', currentUser.uid), {
+                    latitude: pos.coords.latitude,
+                    longitude: pos.coords.longitude
+                })
+            }
+    
+        }, (error) => {
+            if (error.code == error.PERMISSION_DENIED) {
+                updateDoc(doc(db, 'users', currentUser.uid), {
+                    latitude: null,
+                    longitude: null
+                })
+    
+    
+            }
+        })
+    */
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
             setUsers(snapshot.docs.map(doc => ({
