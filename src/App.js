@@ -29,7 +29,6 @@ function App() {
       <div id="app-container">
         <BrowserRouter>
           <Topbar />
-
           <div className="main-component">
             <Routes>
               <Route path='/about' element={<About />} />
