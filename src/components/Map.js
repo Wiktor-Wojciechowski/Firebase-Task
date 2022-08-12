@@ -30,11 +30,12 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function Map() {
     const { currentUser } = useAuth();
-    const [userCoords, setUserCoords] = useState([]);
+
+    const [users, setUsers] = useState([])
 
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-            setUserCoords(snapshot.docs.map(doc => ({
+            setUsers(snapshot.docs.map(doc => ({
                 id: doc.id,
                 data: doc.data()
             })))
@@ -67,14 +68,21 @@ export default function Map() {
 
             setLoading(false)
         })
-
-
-
-
     }, [])
 
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
+            setUsers(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
 
+        })
 
+        return () => {
+            unsubscribe();
+        }
+    }, [])
 
     return (
         <div className='map-component' >
@@ -85,8 +93,12 @@ export default function Map() {
                 />
 
                 {loading && <div style={{ margin: 'auto', position: 'absolute', top: 0, left: '50px', zIndex: 1000 }} >Loading...</div>}
-                {coords && <Marker position={coords} />}
 
+
+
+                {users && users.map((user) => (
+                    <Marker key={user.id} position={[user.data.latitude, user.data.longitude]} />
+                ))}
 
                 <Marker position={[51.505, -0.09]}>
                     <Popup>

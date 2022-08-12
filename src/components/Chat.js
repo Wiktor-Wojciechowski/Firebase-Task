@@ -61,10 +61,8 @@ export default function Chat() {
 
         s.scrollIntoView()
 
-        console.log(document.querySelector('.message-input'))
     }, [messages])
 
-    console.log(currentUser.displayName);
 
     return (
         <div className='chat-component'>
