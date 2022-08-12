@@ -14,11 +14,6 @@ export default function Chat() {
 
     const [text, setText] = useState('')
 
-
-    //get data
-
-
-
     const sendMessage = async (e) => {
         e.preventDefault()
 

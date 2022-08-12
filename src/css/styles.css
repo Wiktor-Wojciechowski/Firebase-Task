@@ -75,15 +75,7 @@ body {
     border: none;
 }
 
-#burger-icon {
-    width: 60px;
-    height: 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
 
-    z-index: 101;
-}
 
 .main-component {
     height: calc(100vh - 60px);
@@ -128,11 +120,21 @@ input[type="submit"] {
     position: sticky;
     top: 0;
     z-index: 100;
+    display: flex;
+    align-items: center;
+}
+
+#burger-icon {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    margin: 0;
 }
 
 .user-chat-icon {
     width: 30px;
     height: 30px;
+
 }
 
 .chat-component {

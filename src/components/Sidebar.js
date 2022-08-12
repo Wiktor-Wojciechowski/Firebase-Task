@@ -4,41 +4,15 @@ import { NavLink } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
 
-import iconClose from '../images/close_black_24dp.svg'
-import iconBurger from '../images/menu_black_24dp.svg'
+
 
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
-export default function Sidebar() {
+export default function Sidebar(props) {
     const { currentUser, logout, updateLogState } = useAuth();
 
-    const [width, setWidth] = useState('0px');
-    const [source, setSource] = useState(iconBurger)
 
-    const menuOpen = () => {
-        setWidth('400px')
-        setSource(iconClose)
-
-        document.addEventListener('click', listen, true)//capture flag (true) is required
-
-    }
-    const menuClose = () => {
-        setWidth('0px')
-        setSource(iconBurger)
-
-        document.removeEventListener('click', listen, true)
-    }
-
-    const listen = (e) => {
-        if (e.target.id != 'burger-icon'
-            && e.target.className != 'side-menu'
-            && e.target.className != 'menu-item'
-            && e.target.className != 'menu-list') {
-            menuClose()
-        }
-        //console.log(e.target.tagName)
-    }
 
     useEffect(() => {
         //const sidebar = document.querySelector('.side-menu')
@@ -48,15 +22,8 @@ export default function Sidebar() {
 
     return (
         <div>
-            <img id="burger-icon" src={source} onClick={(e) => {
 
-                if (width == '0px') {
-                    menuOpen()
-                } else {
-                    menuClose()
-                }
-            }} />
-            <div className='side-menu' style={{ width: width }}>
+            <div className='side-menu' style={{ width: props.width }}>
                 <ul className='menu-list' >
                     <li className='menu-item'>
                         <NavLink to='/' replace={true} >Chat</NavLink>
