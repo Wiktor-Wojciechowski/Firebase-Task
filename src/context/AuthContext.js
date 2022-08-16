@@ -12,6 +12,7 @@ import {
 
 import { db } from '../firebase'
 import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
+import { useDebugValue } from 'react'
 
 const AuthContext = createContext();
 
@@ -94,8 +95,9 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const uns = auth.onAuthStateChanged((user) => {
             setCurrentUser(user)
-
+            setLoading(false)
         })
+
         return uns
     })
 
@@ -129,7 +131,7 @@ export function AuthProvider({ children }) {
             )
 
         })
-        setLoading(false)
+
         console.log('loaded')
         return () => {
             unsubscribe()
