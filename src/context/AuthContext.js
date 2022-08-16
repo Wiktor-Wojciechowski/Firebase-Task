@@ -122,8 +122,32 @@ export function AuthProvider({ children }) {
 
     const q = query(dbRef, orderBy('time', "asc"), limitToLast(25));
 
+    var prevSnap = null;
+
     useEffect(() => {
         const unsubscribe = onSnapshot(q, snapshot => {
+
+            if (snapshot != prevSnap && prevSnap) {
+                console.log('new msg')
+
+                Notification.requestPermission().then((result) => {
+                    console.log(result);
+
+                    var text = snapshot.docs[snapshot.docs.length - 1].data();
+
+                    if (text.time) {
+                        const notif = new Notification('New Message', {
+                            body: text.text,
+
+                        })
+                    }
+
+
+
+                })
+            }
+            prevSnap = snapshot;
+
             setMessages(snapshot.docs.map(doc => ({
                 id: doc.id,
                 data: doc.data()
