@@ -12,7 +12,6 @@ import {
 
 import { db } from '../firebase'
 import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
-import { useDebugValue } from 'react'
 
 const AuthContext = createContext();
 

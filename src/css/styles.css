@@ -135,6 +135,7 @@ input[type="submit"] {
 .user-chat-icon {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
 
 }
 
@@ -288,6 +289,9 @@ tr:nth-child(even) {
     width: 300px;
 }
 
+
+
+
 .settings {
     width: 100%;
 }
@@ -328,6 +332,7 @@ tr:nth-child(even) {
 .avatar {
     width: 300px;
     height: 300px;
+    border-radius: 50%;
 }
 
 form {
@@ -346,27 +351,23 @@ form article {
     margin-bottom: 30px;
 }
 
-.avatar-container {
-    width: 300px;
-    height: 300px;
-}
+
 
 .edit-button {
-    display: none;
     position: relative;
     left: 250px;
     top: -50px;
     width: 50px;
     height: 50px;
-
+    cursor: pointer;
 }
 
-.avatar:hover+.edit-button {
+/*.avatar:hover+.edit-button {
     display: block;
 }
 
 .edit-button:hover {
     display: block;
-}
+}*/
 
 @media (min-width:600px) {}
