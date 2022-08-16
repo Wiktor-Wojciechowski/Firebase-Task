@@ -126,7 +126,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onSnapshot(q, snapshot => {
 
-            if (snapshot != prevSnap && prevSnap) {
+            if (snapshot != prevSnap && prevSnap && !document.hasFocus()) {
                 console.log('new msg')
 
                 Notification.requestPermission().then((result) => {
@@ -135,7 +135,7 @@ export function AuthProvider({ children }) {
                     var text = snapshot.docs[snapshot.docs.length - 1].data();
 
                     if (text.time) {
-                        const notif = new Notification('New Message', {
+                        const notif = new Notification(text.username + " says:", {
                             body: text.text,
 
                         })
