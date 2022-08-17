@@ -9,6 +9,7 @@ import { addDoc, collection, onSnapshot, orderBy, query, limit, serverTimestamp,
 import { auth } from '../firebase'
 import UserList from './UserList'
 import Users from './Users'
+import ProfileCard from './ProfileCard'
 
 export default function Chat() {
 
@@ -106,30 +107,6 @@ function ChatMessage(props) {
             <span className='username' >{props.username}</span>
             <p className='message-content'>{props.text}</p>
 
-        </div>
-    )
-}
-function ProfileCard(props) {
-
-    const { users } = useAuth()
-
-    var user = {}
-
-    for (let q = 1; q < users.length; q++) {
-        if (users[q].id == props.senderId) {
-            console.log(users[q].data)
-            user = users[q].data
-        }
-    }
-
-    var dateJoined = new Date(user.creationTime);
-    console.log(dateJoined)
-
-    return (
-        <div className='profile-card'>
-            <div><img src={user.photoURL}></img></div>
-            <div>{user.username}</div>
-            <div>Joined: {dateJoined.toLocaleDateString()}, {dateJoined.getHours()}:{dateJoined.getMinutes()}:{dateJoined.getSeconds()}</div>
         </div>
     )
 }

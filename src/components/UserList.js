@@ -34,7 +34,7 @@ export default function UserList() {
                         <th>Status</th>
                     </tr>
                     {users.map(user => (
-                        <tr key={user.id}><td>{user.data.username}</td><td><p>{showStatus(user.data.loggedIn)}</p></td></tr>
+                        <tr key={user.id}><td>{user.data.username}</td><td><p className={user.data.loggedIn ? 'online' : 'offline'}>{showStatus(user.data.loggedIn)}</p></td></tr>
 
                     ))}
                 </tbody>

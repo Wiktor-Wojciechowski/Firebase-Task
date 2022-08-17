@@ -41,7 +41,11 @@ export function AuthProvider({ children }) {
         return signOut(auth)
     }
     function updatePhoto(picUrl) {
-        return updateProfile(auth.currentUser, { photoURL: picUrl })
+        return updateProfile(auth.currentUser, { photoURL: picUrl }).then(() => {
+            updateDoc(doc(db, 'users', auth.currentUser.uid), {
+                photoURL: auth.currentUser.photoURL
+            })
+        })
     }
     function updateUsername(username) {
         return updateProfile(auth.currentUser, { displayName: username }).then(() => {
@@ -50,7 +54,6 @@ export function AuthProvider({ children }) {
             })
         })
     }
-
     function addUser(uid) {
         return setDoc(doc(db, 'users', uid), {
             userId: uid,
