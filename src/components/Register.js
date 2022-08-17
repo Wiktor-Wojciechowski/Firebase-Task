@@ -11,6 +11,8 @@ export default function Register() {
 
     const [loading, setLoading] = useState(false)
 
+    const [error, setError] = useState('')
+
     const emailRef = useRef();
     const passRef = useRef();
     const usernameRef = useRef();
@@ -35,6 +37,9 @@ export default function Register() {
 
         } catch (error) {
             console.log(error)
+            if (error.code == 'auth/weak-password') {
+                setError('Password needs to be at least 6 characters long')
+            }
             setLoading(false)
 
         }
@@ -58,6 +63,7 @@ export default function Register() {
                         <label htmlFor="password-input">Password:</label>
                         <input id="password-input" type="password" ref={passRef} required />
                     </article>
+                    <span className='error'>{error}</span>
                     <input disabled={loading} type="submit" value="Submit" />
                 </form>
             </div>

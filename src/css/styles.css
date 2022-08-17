@@ -28,6 +28,11 @@ body {
     justify-content: center;
 }
 
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
 .react-logo-container {
     width: 300px;
     height: 300px;
@@ -160,7 +165,6 @@ input[type="submit"] {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    align-self: center;
 }
 
 .chat-component {
@@ -234,10 +238,9 @@ tr:nth-child(even) {
 
 
 .message-box {
-
     height: calc(100vh - 120px);
-    overflow-y: scroll;
-    flex-direction: column;
+    overflow-y: auto;
+
 }
 
 .message {
@@ -248,10 +251,18 @@ tr:nth-child(even) {
     flex-wrap: wrap;
 }
 
-
-
 .message>* {
     margin: 2px 3px;
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.left-side>* {
+    margin: 0 2px;
 }
 
 .time-span {
@@ -260,7 +271,6 @@ tr:nth-child(even) {
     align-items: center;
     max-height: fit-content;
     height: 30px;
-    align-self: center;
 }
 
 .message-content {
@@ -275,7 +285,6 @@ tr:nth-child(even) {
 }
 
 .username {
-    align-self: center;
     font-weight: bold;
 }
 
@@ -309,6 +318,8 @@ tr:nth-child(even) {
 .send-message-form form {
     display: flex;
     flex-direction: row;
+    height: 100%;
+    padding: 10px;
 }
 
 

@@ -98,13 +98,15 @@ function ChatMessage(props) {
     const [show, setShow] = useState(false)
 
 
+
     return (
         <div className={'message' + ' ' + messageSender}>
-
-            <span className='time-span'>{toDate(props.date)}</span>
-            <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
-            {show && <ProfileCard senderId={props.senderId} />}
-            <span className='username' >{props.username}</span>
+            <span className='left-side'>
+                <span className='time-span'>{toDate(props.date)}</span>
+                <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+                {show && <ProfileCard senderId={props.senderId} />}
+                <span className='username' >{props.username}</span>
+            </span>
             <p className='message-content'>{props.text}</p>
 
         </div>

@@ -14,6 +14,8 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const [error, setError] = useState('')
+
     const navi = useNavigate();
 
     async function handleSubmit(event) {
@@ -29,8 +31,11 @@ export default function Login() {
 
 
         } catch (error) {
-            console.log(error)
-
+            console.log((error.code))
+            if (error.code.includes('auth/user-not-found')) {
+                setError('User does not exist')
+            }
+            setLoading(false)
         }
         setLoading(false)
     }
@@ -43,12 +48,13 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <article>
                         <label htmlFor="email">Email:</label>
-                        <input id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} />
+                        <input required id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} />
                     </article>
                     <article>
                         <label htmlFor="password">Password:</label>
-                        <input type="password" onChange={(e) => { setPassword(e.target.value) }} />
+                        <input required type="password" onChange={(e) => { setPassword(e.target.value) }} />
                     </article>
+                    <span className='error' >{error}</span>
                     <input disabled={loading} type="submit" value="Submit" />
                 </form>
             </div>
