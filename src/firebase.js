@@ -15,19 +15,20 @@ import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBIAw-vTA05L4qErMBiAhvbwI5RLzIm5k8",
+    apiKey: "AIzaSyBi13Kd1nJSROVRsbuLacMDvDfMgx8BK84",
 
-    authDomain: "task-aaa65.firebaseapp.com",
+    authDomain: "task1-af204.firebaseapp.com",
 
-    projectId: "task-aaa65",
+    projectId: "task1-af204",
 
-    storageBucket: "task-aaa65.appspot.com",
+    storageBucket: "task1-af204.appspot.com",
 
-    messagingSenderId: "1072364639649",
+    messagingSenderId: "901065334945",
 
-    appId: "1:1072364639649:web:2bd3cbabc0a43f6004e7e0"
+    appId: "1:901065334945:web:a88d7c006d9198c3df10e0"
 
 };
+
 
 
 // Initialize Firebase

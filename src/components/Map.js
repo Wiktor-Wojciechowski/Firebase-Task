@@ -31,6 +31,36 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export default function Map() {
     const { currentUser, users, loading } = useAuth();
 
+    useEffect(() => {
+        console.log('map')
+        if (currentUser) {
+
+            var id = navigator.geolocation.watchPosition((pos) => {
+
+                //upload your location and then display everyone's marks from db
+
+                updateDoc(doc(db, 'users', currentUser.uid), {
+                    latitude: pos.coords.latitude,
+                    longitude: pos.coords.longitude
+                })
+
+
+            }, (error) => {
+                if (error.code == error.PERMISSION_DENIED) {
+                    updateDoc(doc(db, 'users', currentUser.uid), {
+                        latitude: null,
+                        longitude: null
+                    })
+
+
+                }
+            })
+        }
+        return () => {
+            navigator.geolocation.clearWatch(id)
+        }
+    }, [])
+
     return (
         <div className='map-component' >
             <MapContainer center={[54.54, 15.19]} zoom={4} worldCopyJump={true} scrollWheelZoom={true}>

@@ -10,6 +10,7 @@ import { auth } from '../firebase'
 import UserList from './UserList'
 
 export default function Chat() {
+
     const { currentUser, messages } = useAuth();
 
     const [text, setText] = useState('')
@@ -35,6 +36,7 @@ export default function Chat() {
 
 
     useEffect(() => {
+
         var s = document.querySelector('.scroll-onto')
 
         s.scrollIntoView()
@@ -91,13 +93,24 @@ function ChatMessage(props) {
         return hours.padStart(2, '0') + ':' + minutes.padStart(2, '0');
     }
 
+    const [show, setShow] = useState(false)
+
+
     return (
         <div className={'message' + ' ' + messageSender}>
 
             <span className='time-span'>{toDate(props.date)}</span>
-            <img className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+            <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+            {show && <ProfileCard />}
             <span className='username' >{props.username}</span>
             <p className='message-content'>{props.text}</p>
+
+        </div>
+    )
+}
+function ProfileCard(props) {
+    return (
+        <div className='profile-card'>
 
         </div>
     )

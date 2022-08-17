@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 
 //importing components
 import About from './components/About';
@@ -14,12 +14,12 @@ import Register from './components/Register';
 import Sidebar from './components/Sidebar'
 import Topbar from './components/Topbar';
 import UserList from './components/UserList';
+import Profile from './components/Profile';
 
 //importing context
 import { AuthProvider } from './context/AuthContext.js'
 
 import './css/styles.css';
-
 
 
 function App() {
@@ -57,6 +57,9 @@ function App() {
                   <UserList />
                 </PrivateRoute>
               } />
+
+              <Route path='/users/:userId' element={<Profile></Profile>} />
+
 
               <Route path='/map' element={
                 <PrivateRoute>

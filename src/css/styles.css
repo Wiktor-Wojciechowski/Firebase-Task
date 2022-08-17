@@ -21,6 +21,27 @@ body {
     color: var(--color0);
 }
 
+.about-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.react-logo-container {
+    width: 300px;
+    height: 300px;
+    background-color: #0d1b2a;
+}
+
+.react-logo,
+.firebase-logo {
+    width: 300px;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+
 #app-container {
     display: flex;
     flex-direction: column;
@@ -81,9 +102,13 @@ body {
     height: calc(100vh - 60px);
     margin: auto;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    max-width: 500px;
 
+}
+
+.main-component>div {
+    width: 100%;
+    margin: auto
 }
 
 
@@ -136,12 +161,13 @@ input[type="submit"] {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-
+    align-self: center;
 }
 
 .chat-component {
     height: calc(100vh - 60px);
     overflow: auto;
+    width: 100%;
 }
 
 .users-icon {
@@ -181,6 +207,8 @@ tr:nth-child(even) {
     flex-wrap: wrap;
 }
 
+
+
 .message>* {
     margin: 2px 3px;
 }
@@ -191,7 +219,7 @@ tr:nth-child(even) {
     align-items: center;
     max-height: fit-content;
     height: 30px;
-
+    align-self: center;
 }
 
 .message-content {
@@ -206,6 +234,7 @@ tr:nth-child(even) {
 }
 
 .username {
+    align-self: center;
     font-weight: bold;
 }
 
@@ -233,21 +262,12 @@ tr:nth-child(even) {
 
 .send-message-form {
     height: 60px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 0;
-    padding: 1px;
+    vertical-align: bottom;
 }
 
 .send-message-form form {
     display: flex;
-    margin: auto;
     flex-direction: row;
-    height: 100%;
-    width: 80%;
-    justify-content: center;
-    align-items: center;
 }
 
 
@@ -329,10 +349,17 @@ tr:nth-child(even) {
     background-color: red;
 }
 
+.avatar-container {
+    width: 100%;
+}
+
 .avatar {
     width: 300px;
     height: 300px;
+    object-fit: cover;
     border-radius: 50%;
+    margin: auto;
+    display: block;
 }
 
 form {
