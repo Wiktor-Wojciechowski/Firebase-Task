@@ -170,6 +170,17 @@ input[type="submit"] {
     width: 100%;
 }
 
+.profile-card {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    background-color: rgb(92, 92, 189);
+    z-index: 10;
+    border-radius: 8px;
+}
+
 .users-icon {
     width: 60px;
     height: 60px;
@@ -200,7 +211,7 @@ tr:nth-child(even) {
 }
 
 .message {
-
+    position: relative;
     display: flex;
     align-items: flex-start;
     min-height: 40px;
@@ -301,6 +312,7 @@ tr:nth-child(even) {
 }
 
 .account-settings-component {
+    margin-top: 50px;
     display: flex;
     margin: auto;
     flex-direction: column;

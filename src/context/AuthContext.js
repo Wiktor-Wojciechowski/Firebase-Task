@@ -50,9 +50,12 @@ export function AuthProvider({ children }) {
             })
         })
     }
+
     function addUser(uid) {
         return setDoc(doc(db, 'users', uid), {
             userId: uid,
+            photoURL: auth.currentUser.photoURL,
+            creationTime: auth.currentUser.metadata.creationTime,
             loggedIn: true
         })
     }
