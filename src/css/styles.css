@@ -33,6 +33,20 @@ body {
     margin-bottom: 10px;
 }
 
+.contact-component {
+    width: 500px;
+    margin: auto;
+}
+
+address {
+    display: flex;
+    flex-direction: column;
+}
+
+address>div {
+    text-align: center;
+}
+
 .react-logo-container {
     width: 300px;
     height: 300px;
@@ -165,6 +179,7 @@ input[type="submit"] {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .chat-component {
@@ -240,7 +255,7 @@ tr:nth-child(even) {
 .message-box {
     height: calc(100vh - 120px);
     overflow-y: auto;
-
+    padding: 10px;
 }
 
 .message {
@@ -388,6 +403,13 @@ tr:nth-child(even) {
     width: 100%;
     margin: 10px;
     height: 36px;
+}
+
+.action-done {
+    visibility: visible;
+    position: absolute;
+    top: 70px;
+
 }
 
 .delete-account-button {

@@ -9,6 +9,8 @@ import editIcon from '../images/edit_pen.svg'
 import { doc } from 'firebase/firestore';
 import { db, storage } from '../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { auth } from '../firebase';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 export default function AccountSettings() {
     const { currentUser, updateUsername, updatePhoto, removeUser } = useAuth();
@@ -18,6 +20,8 @@ export default function AccountSettings() {
     var avatar = null;
 
     const [photo, setPhoto] = useState(currentUser.photoURL)
+
+    const [show, setShow] = useState(false)
 
     function updateName() {
         try {
@@ -65,7 +69,16 @@ export default function AccountSettings() {
                     <span><input defaultValue={currentUser.email}></input><button>Save</button></span>
                 </article>
                 <div className='settings-buttons'>
-                    <button>Reset Password</button>
+                    <button onClick={() => {
+                        sendPasswordResetEmail(auth, currentUser.email).then(() => {
+                            setShow(true)
+                        }).catch((error) => {
+                            alert(error.code)
+                        })
+                    }}>Reset Password</button>
+
+                    {show && <p className='action-done'>Password Reset Email Sent <span className='close' onClick={() => { setShow(false) }}>X</span></p>}
+
                     <button className='delete-account-button' onClick={() => {
                         if (window.confirm('Are you sure you want to delete your account?')) {
                             deleteDoc(doc(db, 'users', currentUser.uid)).then(

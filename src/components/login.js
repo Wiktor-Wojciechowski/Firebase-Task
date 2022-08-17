@@ -35,6 +35,9 @@ export default function Login() {
             if (error.code.includes('auth/user-not-found')) {
                 setError('User does not exist')
             }
+            if (error.code.includes('auth/wrong-password')) {
+                setError('Wrong Password')
+            }
             setLoading(false)
         }
         setLoading(false)
