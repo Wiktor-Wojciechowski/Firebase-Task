@@ -437,27 +437,17 @@ tr:nth-child(even) {
 .settings article span {
     vertical-align: middle;
     display: flex;
-    border: 1px solid black;
-    border-radius: 10px;
+    justify-content: flex-start;
+    margin: auto;
+    text-align: center;
 }
 
 .settings article span input {
-    border: none;
+
     width: 90%;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    flex-grow: 2;
 
 }
 
-.settings article span button {
-    border: none;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    word-break: keep-all;
-}
 
 
 .settings-buttons {
@@ -522,15 +512,21 @@ form article {
     margin-bottom: 30px;
 }
 
-
-
 .edit-button {
-    position: relative;
-    left: 250px;
-    top: -50px;
-    width: 50px;
-    height: 50px;
+    border: none;
+    border-radius: 10px;
+
+    word-break: keep-all;
+    width: 10%;
+    height: 36px;
+
     cursor: pointer;
+}
+
+.edit-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 /*.avatar:hover+.edit-button {

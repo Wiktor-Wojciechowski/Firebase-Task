@@ -11,6 +11,7 @@ import { db, storage } from '../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { auth } from '../firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import { useEffect } from 'react';
 
 export default function AccountSettings() {
     const { currentUser, updateUsername, updatePhoto, removeUser } = useAuth();
@@ -20,7 +21,8 @@ export default function AccountSettings() {
     var avatar = null;
 
     const [photo, setPhoto] = useState(currentUser.photoURL)
-
+    const [username, setUsername] = useState(currentUser.displayName)
+    const [email, setEmail] = useState(currentUser.email)
     const [show, setShow] = useState(false)
 
     function updateName() {
@@ -48,6 +50,24 @@ export default function AccountSettings() {
 
     }
 
+    function resetPassword() {
+        sendPasswordResetEmail(auth, currentUser.email).then(() => {
+            setShow(true)
+        }).catch((error) => {
+            alert(error.code)
+        })
+    }
+
+    var display = false;
+    var display1 = false;
+
+
+    if (username != currentUser.displayName) {
+        display = true
+    }
+    if (email != currentUser.email) {
+        display1 = true
+    }
     return (
         <div className='account-settings-component' >
             <div className='avatar-container'>
@@ -62,20 +82,16 @@ export default function AccountSettings() {
             <div className='settings'>
                 <article>
                     <label>Username:</label>
-                    <span><input defaultValue={currentUser.displayName} ref={usernameRef} ></input><button onClick={updateName}>Save</button></span>
+                    <span><input onChange={(e) => { setUsername(e.target.value) }} defaultValue={currentUser.displayName} ref={usernameRef} ></input>
+                        {display && <button title='Save Changes' className='edit-button' onClick={() => { updateName() }}><img className="edit-icon" src={editIcon}></img></button>} </span>
                 </article>
                 <article>
                     <label>Email:</label>
-                    <span><input defaultValue={currentUser.email}></input><button>Save</button></span>
+                    <span><input onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
+                        {display1 && <button title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button>} </span>
                 </article>
                 <div className='settings-buttons'>
-                    <button onClick={() => {
-                        sendPasswordResetEmail(auth, currentUser.email).then(() => {
-                            setShow(true)
-                        }).catch((error) => {
-                            alert(error.code)
-                        })
-                    }}>Reset Password</button>
+                    <button onClick={() => { resetPassword() }}>Reset Password</button>
 
                     {show && <p className='action-done'>Password Reset Email Sent <span className='close' onClick={() => { setShow(false) }}>X</span></p>}
 
