@@ -10,6 +10,7 @@ import { auth } from '../firebase'
 import UserList from './UserList'
 import Users from './Users'
 import ProfileCard from './ProfileCard'
+import { ref } from 'firebase/storage'
 
 export default function Chat() {
 
@@ -37,6 +38,8 @@ export default function Chat() {
 
 
 
+
+
     useEffect(() => {
 
         var s = document.querySelector('.scroll-onto')
@@ -44,8 +47,20 @@ export default function Chat() {
         s.scrollIntoView()
 
     }, [messages])
+    /*
+        function handleClick(e) {
+            console.log(e.target.className)
+            if (e.target.className == 'profile-card') {
+                alert('dd')
+            }
+    
+    
+        }
 
-
+    useEffect(() => {
+        document.addEventListener('click', handleClick)
+    }, [])
+*/
     return (
         <div className='chat-component'>
             <div className='message-box'>
@@ -98,13 +113,12 @@ function ChatMessage(props) {
     const [show, setShow] = useState(false)
 
 
-
     return (
         <div className={'message' + ' ' + messageSender}>
             <span className='left-side'>
                 <span className='time-span'>{toDate(props.date)}</span>
                 <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
-                {show && <ProfileCard senderId={props.senderId} />}
+                {show && <div><span>X</span><ProfileCard show={show} setShow={setShow} senderId={props.senderId} /></div>}
                 <span className='username' >{props.username}</span>
             </span>
             <p className='message-content'>{props.text}</p>

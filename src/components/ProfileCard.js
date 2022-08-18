@@ -1,10 +1,15 @@
 import React from 'react'
+import { useEffect } from 'react'
+
 
 import { useAuth } from '../context/AuthContext'
 
 export default function ProfileCard(props) {
 
     const { users } = useAuth()
+
+    console.log(props.show)
+
 
     var user = {}
 
@@ -25,8 +30,22 @@ export default function ProfileCard(props) {
         return dmy.padStart(2, '0') + ':' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
     }
 
+    function handleClick(e) {
+        if (e.target.className != 'profile-card') {
+            props.setShow(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', handleClick, true)
+        return () => {
+            document.removeEventListener('click', handleClick, true)
+        }
+    }, [])
+
     return (
         <div className='profile-card'>
+            <span onClick={() => { props.setShow(false) }}>Click me to close</span>
             <img src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
             <span>{user.username}</span>
             <span>Joined: {showDate()}</span>
