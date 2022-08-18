@@ -62,10 +62,10 @@ export default function AccountSettings() {
     var display1 = false;
 
 
-    if (username != currentUser.displayName) {
+    if (username != currentUser.displayName && username.length > 0) {
         display = true
     }
-    if (email != currentUser.email) {
+    if (email != currentUser.email && email.length > 0) {
         display1 = true
     }
     return (
@@ -84,11 +84,11 @@ export default function AccountSettings() {
                     <article>
                         <label>Username:</label>
                         <span><input onChange={(e) => { setUsername(e.target.value) }} defaultValue={currentUser.displayName} ref={usernameRef} ></input>
-                            {display && <button title='Save Changes' className='edit-button' onClick={() => { updateName() }}><img className="edit-icon" src={editIcon}></img></button>} </span>
+                            <button disabled={!display} title='Save Changes' className='edit-button' onClick={() => { updateName() }}><img className="edit-icon" src={editIcon}></img></button> </span>
                     </article>
                     <article>
                         <label>Email:</label>
-                        <span><input onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
+                        <span><input type='email' onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
                             <button disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
                     </article>
                     <div className='settings-buttons'>

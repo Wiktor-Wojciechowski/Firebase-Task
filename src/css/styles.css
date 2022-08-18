@@ -1,6 +1,10 @@
 :root {
 
-
+    /* --color0: ;
+    --color1: ;
+    --color2: ;
+    --color3: ;
+    --color4: ; */
     --color0: #0d1b2a;
     --color1: #1b263b;
     --color2: #415a77;
@@ -242,7 +246,7 @@ input[type="submit"] {
     padding: 10px;
     top: 40px;
     left: 50px;
-    background-color: rgb(92, 92, 189);
+    background-color: rgb(123, 123, 179);
     z-index: 10;
     border-radius: 8px;
     display: flex;
@@ -261,6 +265,12 @@ input[type="submit"] {
 
 .profile-card * {
     pointer-events: none;
+}
+
+.profile-card a {
+    pointer-events: all;
+    color: #0d1b2a;
+
 }
 
 .profile-card span {

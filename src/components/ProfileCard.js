@@ -51,6 +51,7 @@ export default function ProfileCard(props) {
         <div className='profile-card'>
             <img src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
             <h2>{user.username}</h2>
+            <div><a href={`users/${user.userId}`} >Visit Profile</a></div>
             <span className={onlineStatus().toLowerCase()}>{onlineStatus()}</span>
             <span>Joined: {showDate()}</span>
         </div>
