@@ -45,7 +45,6 @@ export default function ProfileCard(props) {
 
     return (
         <div className='profile-card'>
-            <span onClick={() => { props.setShow(false) }}>Click me to close</span>
             <img src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
             <span>{user.username}</span>
             <span>Joined: {showDate()}</span>
