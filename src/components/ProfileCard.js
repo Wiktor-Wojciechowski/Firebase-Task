@@ -43,10 +43,15 @@ export default function ProfileCard(props) {
         }
     }, [])
 
+    function onlineStatus() {
+        return user.loggedIn ? 'Online' : 'Offline'
+    }
+
     return (
         <div className='profile-card'>
             <img src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
-            <span>{user.username}</span>
+            <h2>{user.username}</h2>
+            <span className={onlineStatus().toLowerCase()}>{onlineStatus()}</span>
             <span>Joined: {showDate()}</span>
         </div>
     )

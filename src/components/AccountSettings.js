@@ -70,38 +70,40 @@ export default function AccountSettings() {
     }
     return (
         <div className='account-settings-component' >
-            <div className='avatar-container'>
+            <div className='account-settings-wrapper' >
+                <div className='avatar-container'>
 
-                <img className='avatar' src={photo}></img>
+                    <img className='avatar' src={photo}></img>
 
-                <label htmlFor='upload-avatar'>Change Avatar:</label>
-                <input type="file" id="upload-avatar" onChange={(event) => { avatar = event.target.files[0]; console.log(avatar); uploadImage() }}></input>
+                    <label htmlFor='upload-avatar'>Change Avatar:</label>
+                    <input type="file" id="upload-avatar" onChange={(event) => { avatar = event.target.files[0]; console.log(avatar); uploadImage() }}></input>
 
 
-            </div>
-            <div className='settings'>
-                <article>
-                    <label>Username:</label>
-                    <span><input onChange={(e) => { setUsername(e.target.value) }} defaultValue={currentUser.displayName} ref={usernameRef} ></input>
-                        {display && <button title='Save Changes' className='edit-button' onClick={() => { updateName() }}><img className="edit-icon" src={editIcon}></img></button>} </span>
-                </article>
-                <article>
-                    <label>Email:</label>
-                    <span><input onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
-                        {display1 && <button title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button>} </span>
-                </article>
-                <div className='settings-buttons'>
-                    <button onClick={() => { resetPassword() }}>Reset Password</button>
+                </div>
+                <div className='settings'>
+                    <article>
+                        <label>Username:</label>
+                        <span><input onChange={(e) => { setUsername(e.target.value) }} defaultValue={currentUser.displayName} ref={usernameRef} ></input>
+                            {display && <button title='Save Changes' className='edit-button' onClick={() => { updateName() }}><img className="edit-icon" src={editIcon}></img></button>} </span>
+                    </article>
+                    <article>
+                        <label>Email:</label>
+                        <span><input onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
+                            <button disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
+                    </article>
+                    <div className='settings-buttons'>
+                        <button onClick={() => { resetPassword() }}>Reset Password</button>
 
-                    {show && <p className='action-done'>Password Reset Email Sent <span className='close' onClick={() => { setShow(false) }}>X</span></p>}
+                        {show && <p className='action-done'>Password Reset Email Sent <span className='close' onClick={() => { setShow(false) }}>X</span></p>}
 
-                    <button className='delete-account-button' onClick={() => {
-                        if (window.confirm('Are you sure you want to delete your account?')) {
-                            deleteDoc(doc(db, 'users', currentUser.uid)).then(
-                                removeUser(currentUser.uid)
-                            )
-                        }
-                    }}>Delete Account</button>
+                        <button className='delete-account-button' onClick={() => {
+                            if (window.confirm('Are you sure you want to delete your account?')) {
+                                deleteDoc(doc(db, 'users', currentUser.uid)).then(
+                                    removeUser(currentUser.uid)
+                                )
+                            }
+                        }}>Delete Account</button>
+                    </div>
                 </div>
             </div>
         </div >

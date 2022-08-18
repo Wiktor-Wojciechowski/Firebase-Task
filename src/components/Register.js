@@ -28,7 +28,7 @@ export default function Register() {
                 await addUser((userCredential.user.uid)).then(() => {
                     updateUsername(username).then(() => {
                         updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png').then(() => {
-                            setLoading(false)
+
                             navi('../');
                         })
                     })
@@ -52,8 +52,8 @@ export default function Register() {
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
                     <article>
-                        <label htmlFor="username-input">Username:</label>
-                        <input id="username-input" ref={usernameRef} required />
+                        <label htmlFor="username-input" >Username:</label>
+                        <input id="username-input" ref={usernameRef} placeholder='max 32 characters' maxLength={32} required />
                     </article>
                     <article>
                         <label htmlFor="email-input">Email:</label>
@@ -61,7 +61,7 @@ export default function Register() {
                     </article>
                     <article>
                         <label htmlFor="password-input">Password:</label>
-                        <input id="password-input" type="password" ref={passRef} required />
+                        <input id="password-input" type="password" maxLength={4096} ref={passRef} required />
                     </article>
                     <span className='error'>{error}</span>
                     <input disabled={loading} type="submit" value="Submit" />
