@@ -31,7 +31,7 @@ export default function ProfileCard(props) {
     }
 
     function handleClick(e) {
-        if (e.target.className != 'profile-card') {
+        if (e.target.className != 'profile-card' && e.target.className != 'avatar') {
             props.setShow(false)
         }
     }

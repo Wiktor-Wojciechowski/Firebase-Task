@@ -58,7 +58,7 @@ export default function Login() {
                         <input required type="password" onChange={(e) => { setPassword(e.target.value) }} />
                     </article>
                     <span className='error' >{error}</span>
-                    <input disabled={loading} type="submit" value="Submit" />
+                    <button disabled={loading} >Log In</button>
                 </form>
             </div>
     )

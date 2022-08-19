@@ -5,11 +5,18 @@
     --color2: ;
     --color3: ;
     --color4: ; */
-    --color0: #0d1b2a;
+    /* --color0: #0d1b2a;
     --color1: #1b263b;
     --color2: #415a77;
     --color3: #778da9;
-    --color4: #e0e1dd;
+    --color4: #e0e1dd; */
+
+    --color1: rgb(52, 21, 94);
+    --color2: rgb(79, 188, 224);
+    /*font*/
+    --color3: rgb(114, 204, 235);
+
+    --color4: rgb(39, 13, 71);
 
 }
 
@@ -18,10 +25,16 @@
     height: 100vh;
 }
 
+@font-face {
+    font-family: ralewayMedium;
+    src: url('../fonts/raleway.medium.ttf');
+
+}
+
 * {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: ralewayMedium;
     box-sizing: border-box;
 
     overflow-wrap: break-word;
@@ -31,8 +44,9 @@
 
 
 body {
-    background-color: var(--color4);
-    color: var(--color0);
+    background: linear-gradient(-30deg, rgb(70, 139, 230), rgb(52, 21, 94));
+
+    color: var(--color3);
 }
 
 .about-component {
@@ -95,6 +109,11 @@ address>div {
     object-fit: scale-down;
 }
 
+.register-component {
+    max-width: 600px;
+    margin: auto;
+}
+
 .react-logo-container {
     width: 300px;
     height: 300px;
@@ -117,7 +136,7 @@ address>div {
 }
 
 .side-menu {
-    background-color: var(--color3);
+    background: linear-gradient(-90deg, rgb(72, 153, 228), rgb(52, 21, 94));
     position: fixed;
     top: 60px;
     left: 0px;
@@ -144,13 +163,13 @@ address>div {
     font-size: 30px;
     padding: 10px;
     width: 80%;
-    border-bottom: solid 1px var(--color4);
+    border-bottom: solid 1px var(--color3);
 }
 
 .menu-item a {
     display: inline-block;
     text-decoration: none;
-    color: var(--color4);
+    color: var(--color3);
     height: 100%;
     width: 100%;
     white-space: nowrap;
@@ -174,12 +193,14 @@ address>div {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
+    overflow: auto;
 
 }
 
 .main-component>div {
     width: 100%;
+
 }
 
 
@@ -198,23 +219,15 @@ label {
     margin: 5px 0;
 }
 
-input {
-    height: 36px;
-    font-size: 18px;
-    width: 100%;
-    border-radius: 10px;
-    padding: 3px;
-    border: 1px solid var(--color1);
-}
 
-input[type="submit"] {
-    max-width: 200px;
-}
+
+
 
 #topbar-component {
     width: 100%;
     min-height: 60px;
-    background-color: var(--color2);
+    background: linear-gradient(90deg, rgb(83, 123, 255), rgb(52, 21, 94));
+
     box-shadow: 0px 0px 10px #0d1b2a;
     position: fixed;
     top: 0;
@@ -251,7 +264,8 @@ input[type="submit"] {
     padding: 10px;
     top: 40px;
     left: 50px;
-    background-color: rgb(123, 123, 179);
+    box-shadow: 0 0 2px 2px var(--color4);
+    background: linear-gradient(rgb(87, 85, 207), rgb(150, 117, 189));
     z-index: 10;
     border-radius: 8px;
     display: flex;
@@ -334,7 +348,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #778da9;
+    background-color: #392678;
 }
 
 
@@ -368,6 +382,8 @@ tr:nth-child(even) {
 
 .time-span {
     display: flex;
+
+    word-break: keep-all;
     font-size: 18px;
     align-items: center;
     max-height: fit-content;
@@ -375,7 +391,7 @@ tr:nth-child(even) {
 }
 
 .message-content {
-    background-color: var(--color3);
+    background-color: var(--color4);
     border-radius: 6px;
     padding: 8px;
     line-height: 1.5em;
@@ -398,6 +414,8 @@ tr:nth-child(even) {
     background-color: var(--color2);
     color: var(--color4);
 }
+
+
 
 /*
 .owner {
@@ -426,9 +444,8 @@ tr:nth-child(even) {
 
 
 
-.message-input {
-    font-size: 18px;
-}
+
+
 
 .counter {
     width: 80px;
@@ -481,11 +498,6 @@ tr:nth-child(even) {
     text-align: center;
 }
 
-.settings article span input {
-
-    width: 90%;
-
-}
 
 .settings-buttons {
     display: flex;
@@ -529,7 +541,7 @@ tr:nth-child(even) {
     border-radius: 50%;
     display: block;
     object-fit: cover;
-
+    pointer-events: auto;
 }
 
 form {
@@ -576,6 +588,13 @@ form article {
     align-items: center;
 }
 
+input {
+    display: inline-block;
+    width: 80%;
+    max-width: 300px;
+}
+
+.profile-username {}
 
 /*.avatar:hover+.edit-button {
     display: block;

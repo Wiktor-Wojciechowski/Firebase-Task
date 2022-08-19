@@ -64,7 +64,7 @@ export default function Register() {
                         <input id="password-input" type="password" maxLength={4096} ref={passRef} required />
                     </article>
                     <span className='error'>{error}</span>
-                    <input disabled={loading} type="submit" value="Submit" />
+                    <button disabled={loading} >Register</button>
                 </form>
             </div>
     )

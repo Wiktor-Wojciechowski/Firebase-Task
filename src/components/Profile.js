@@ -64,8 +64,8 @@ export default function Profile() {
             <div className='profile-component'>
                 <div className='avatar-container'><img className='avatar' src={paramUser.data.photoURL} ></img></div>
                 <section>
-                    <div>{paramUser.data.username}</div>
-                    <div>{paramUser.data.description}</div>
+                    <h1 className='profile-username'>{paramUser.data.username}</h1>
+                    <div className='profile-description'>{paramUser.data.description}</div>
                     <div>Date Joined: {showDate(userCreationDate)}</div>
                 </section>
             </div>
