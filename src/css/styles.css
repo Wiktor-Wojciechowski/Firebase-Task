@@ -36,10 +36,15 @@ body {
 }
 
 .about-component {
+    margin: auto;
+    width: 500px;
+
+}
+
+.about-component>div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .error {
@@ -279,6 +284,21 @@ input[type="submit"] {
 
 }
 
+.profile-link {
+    text-decoration: none;
+    color: var(--color0)
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
+.user-row {
+    height: 24px;
+
+
+}
+
 .users-icon {
     width: 60px;
     height: 60px;
@@ -437,15 +457,16 @@ tr:nth-child(even) {
 .account-settings-component {
     margin: auto;
 
-    max-width: 800px;
+
 }
 
 .account-settings-wrapper {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
-
+    max-width: 500px;
     margin: auto;
+    padding: 20px;
+
 }
 
 .settings .settings article {
@@ -465,8 +486,6 @@ tr:nth-child(even) {
     width: 90%;
 
 }
-
-
 
 .settings-buttons {
     display: flex;
@@ -500,19 +519,17 @@ tr:nth-child(even) {
     background-color: red;
 }
 
-.avatar-container {
-    width: 100%;
-}
+
 
 .avatar {
-    width: 100%;
-    max-width: 300px;
-    max-height: 300px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 50%;
     margin: auto;
+    width: 300px;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
     display: block;
+    object-fit: cover;
+
 }
 
 form {
@@ -552,6 +569,14 @@ form article {
     object-fit: contain;
 }
 
+.profile-component {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 /*.avatar:hover+.edit-button {
     display: block;
 }
@@ -577,5 +602,11 @@ form article {
     .userlist-component {
 
         justify-self: center;
+    }
+
+    .profile-component {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
     }
 }

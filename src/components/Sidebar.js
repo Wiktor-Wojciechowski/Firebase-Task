@@ -61,6 +61,11 @@ export default function Sidebar(props) {
                         </li>
                     }
                     {currentUser &&
+                        <li className='menu-item'>
+                            <NavLink to='users/myprofile' replace={true} >My Profile</NavLink>
+                        </li>
+                    }
+                    {currentUser &&
                         <div className='logout-button' onClick={async () => {
                             try {
                                 await updateLogState(currentUser.uid, false).then(async () => {

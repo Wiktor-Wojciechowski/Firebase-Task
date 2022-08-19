@@ -34,12 +34,14 @@ export default function UserList() {
                         <th>Status</th>
                     </tr>
                     {users.map(user => (
-                        <tr key={user.id}><td>{user.data.username}</td><td><p className={user.data.loggedIn ? 'online' : 'offline'}>{showStatus(user.data.loggedIn)}</p></td></tr>
-
+                        <tr className='user-row' key={user.id}>
+                            <td><a className='profile-link' href={`users/${user.id}`} >{user.data.username}</a></td>
+                            <td><p className={user.data.loggedIn ? 'online' : 'offline'}>{showStatus(user.data.loggedIn)}</p></td>
+                        </tr>
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div >
     )
 
 }
