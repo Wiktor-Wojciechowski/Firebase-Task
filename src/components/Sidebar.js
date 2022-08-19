@@ -4,21 +4,11 @@ import { NavLink } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
 
-
-
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
 export default function Sidebar(props) {
     const { currentUser, logout, updateLogState } = useAuth();
-
-
-
-    useEffect(() => {
-        //const sidebar = document.querySelector('.side-menu')
-
-
-    }, [])
 
     return (
         <div>
@@ -52,7 +42,7 @@ export default function Sidebar(props) {
                     }
                     {!currentUser &&
                         <li className='menu-item'>
-                            <NavLink to='/login' replace={true} >Login</NavLink>
+                            <NavLink to='/login' replace={true} >Log In</NavLink>
                         </li>
                     }
                     {currentUser &&

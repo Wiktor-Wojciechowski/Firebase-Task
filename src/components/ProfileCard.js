@@ -27,7 +27,7 @@ export default function ProfileCard(props) {
         var minutes = dateJoined.getMinutes().toString();
         var seconds = dateJoined.getSeconds().toString();
 
-        return dmy.padStart(2, '0') + ':' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
+        return dmy.padStart(2, '0') + ' ' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
     }
 
     function handleClick(e) {
@@ -53,7 +53,7 @@ export default function ProfileCard(props) {
             <h2>{user.username}</h2>
             <div><a href={`users/${user.userId}`} >Visit Profile</a></div>
             <span className={onlineStatus().toLowerCase()}>{onlineStatus()}</span>
-            <span>Joined: {showDate()}</span>
+            <span className='date-span'>Member Since: {showDate()}</span>
         </div>
     )
 }

@@ -60,6 +60,13 @@ function App() {
 
               <Route path='/users/:userId' element={<Profile></Profile>} />
 
+              <Route path='/users/myprofile' element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }>
+
+              </Route>
 
               <Route path='/map' element={
                 <PrivateRoute>

@@ -8,7 +8,7 @@ import { addDoc, collection, onSnapshot, orderBy, query, limit, serverTimestamp,
 
 import { auth } from '../firebase'
 import UserList from './UserList'
-import Users from './Users'
+
 import ProfileCard from './ProfileCard'
 import { ref } from 'firebase/storage'
 

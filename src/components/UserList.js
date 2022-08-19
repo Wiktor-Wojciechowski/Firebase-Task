@@ -8,19 +8,6 @@ import { useAuth } from '../context/AuthContext';
 export default function UserList() {
     const { users } = useAuth();
 
-    /*
-        useEffect(() => {
-            const unsubscribe = onSnapshot(collection(db, 'users'), (snapshot) => {
-                setUsers(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    data: doc.data()
-                })))
-            })
-            return () => {
-                unsubscribe();
-            }
-        }, [])
-    */
     function showStatus(bool) {
         return bool ? 'Online' : 'Offline';
     }

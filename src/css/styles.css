@@ -25,6 +25,11 @@
     height: 100vh;
 }
 
+a {
+    color: var(--color3);
+
+}
+
 @font-face {
     font-family: ralewayMedium;
     src: url('../fonts/raleway.medium.ttf');
@@ -75,6 +80,12 @@ address {
     text-align: left;
 }
 
+.blog-component {}
+
+.article-list {
+    background-color: #fff;
+}
+
 ul {
     font-size: 20px;
     list-style: none;
@@ -109,10 +120,7 @@ address>div {
     object-fit: scale-down;
 }
 
-.register-component {
-    max-width: 600px;
-    margin: auto;
-}
+
 
 .react-logo-container {
     width: 300px;
@@ -127,6 +135,9 @@ address>div {
     object-fit: scale-down;
 }
 
+.date-span {
+    word-break: keep-all;
+}
 
 #app-container {
     display: flex;
@@ -204,8 +215,9 @@ address>div {
 }
 
 
+
 h1 {
-    font-size: 40px;
+    font-size: 50px;
     text-align: center;
     margin: 20px;
     overflow-wrap: break-word;
@@ -348,7 +360,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #392678;
+    background-color: #1e1441;
 }
 
 
@@ -397,7 +409,7 @@ tr:nth-child(even) {
     line-height: 1.5em;
     word-break: keep-all;
     overflow-wrap: anywhere;
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
 
 }
@@ -432,20 +444,14 @@ tr:nth-child(even) {
 
 .send-message-form {
     height: 60px;
-    vertical-align: bottom;
 }
 
 .send-message-form form {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     height: 100%;
-    padding: 10px;
+
 }
-
-
-
-
-
 
 .counter {
     width: 80px;
@@ -456,7 +462,7 @@ tr:nth-child(even) {
 
 .send-message-button {
     width: 80px;
-    height: 90%;
+
 }
 
 .map-component {
@@ -545,19 +551,8 @@ tr:nth-child(even) {
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-
-}
-
-form article {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    align-items: center;
-    margin-bottom: 30px;
+    width: 100%;
+    margin: auto;
 }
 
 .edit-button {
@@ -589,9 +584,29 @@ form article {
 }
 
 input {
-    display: inline-block;
-    width: 80%;
-    max-width: 300px;
+    display: block;
+    width: 100%;
+    max-width: 90%;
+    margin: 20px auto;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    padding: 5px;
+    font-size: 18px;
+}
+
+button {
+    display: block;
+    margin: auto;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    background: rgb(151, 222, 255);
+}
+
+button:hover {
+    background: rgb(84, 140, 167);
+    ;
 }
 
 .profile-username {}
@@ -627,5 +642,16 @@ input {
         flex-direction: row;
         align-items: flex-start;
         justify-content: center;
+    }
+
+    .register-component {
+        max-width: 600px;
+        height: 80vh;
+        margin: auto;
+    }
+
+    .login-component {
+        max-width: 600px;
+        margin: auto;
     }
 }

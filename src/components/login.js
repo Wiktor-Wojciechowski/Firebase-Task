@@ -46,17 +46,14 @@ export default function Login() {
     return (
         //if user logged in redirect to home
         currentUser ? <Navigate to='/' /> :
-            <div id="login-component">
+            <div className="login-component">
                 <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
-                    <article>
-                        <label htmlFor="email">Email:</label>
-                        <input required id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} />
-                    </article>
-                    <article>
-                        <label htmlFor="password">Password:</label>
-                        <input required type="password" onChange={(e) => { setPassword(e.target.value) }} />
-                    </article>
+
+                    <input required id="email" type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder='Email' />
+
+                    <input required type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder='Password' />
+
                     <span className='error' >{error}</span>
                     <button disabled={loading} >Log In</button>
                 </form>

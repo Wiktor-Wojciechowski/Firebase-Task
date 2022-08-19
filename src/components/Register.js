@@ -16,6 +16,7 @@ export default function Register() {
     const emailRef = useRef();
     const passRef = useRef();
     const usernameRef = useRef();
+    const dobRef = useRef();
 
     const navi = useNavigate();
 
@@ -51,18 +52,11 @@ export default function Register() {
             <div className='register-component'>
                 <h1>Register</h1>
                 <form onSubmit={handleSubmit}>
-                    <article>
-                        <label htmlFor="username-input" >Username:</label>
-                        <input id="username-input" ref={usernameRef} placeholder='max 32 characters' maxLength={32} required />
-                    </article>
-                    <article>
-                        <label htmlFor="email-input">Email:</label>
-                        <input id="email-input" type="email" ref={emailRef} required />
-                    </article>
-                    <article>
-                        <label htmlFor="password-input">Password:</label>
-                        <input id="password-input" type="password" maxLength={4096} ref={passRef} required />
-                    </article>
+
+                    <input id="username-input" ref={usernameRef} placeholder='Username (max. 32 characters)' maxLength={32} required />
+                    <input id="email-input" type="email" ref={emailRef} placeholder='Email' required />
+                    <input id="password-input" type="password" maxLength={4096} ref={passRef} placeholder='Password' required />
+                    <input id="date-of-birth-input" type='date' ref={dobRef}></input>
                     <span className='error'>{error}</span>
                     <button disabled={loading} >Register</button>
                 </form>

@@ -26,7 +26,7 @@ export default function Profile() {
         var minutes = dateJoined.getMinutes().toString();
         var seconds = dateJoined.getSeconds().toString();
 
-        return dmy.padStart(2, '0') + ':' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
+        return dmy.padStart(2, '0') + ' ' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
     }
 
     var paramUser = 0;
@@ -66,25 +66,10 @@ export default function Profile() {
                 <section>
                     <h1 className='profile-username'>{paramUser.data.username}</h1>
                     <div className='profile-description'>{paramUser.data.description}</div>
-                    <div>Date Joined: {showDate(userCreationDate)}</div>
+                    <span className='profile-email'>{paramUser.data.email}</span>
+                    <span className='date-span'>Member Since: {showDate(userCreationDate)}</span>
                 </section>
             </div>
         )
     }
-
-    return (
-
-        <div className='profile-component'>
-
-
-
-            <div>{JSON.stringify(userId)}</div>
-
-            <div></div>
-            <div>Username</div>
-            <div>Description</div>
-            <div>Date joined</div>
-        </div>
-    )
-
 }
