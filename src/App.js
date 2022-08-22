@@ -58,15 +58,16 @@ function App() {
                 </PrivateRoute>
               } />
 
-              <Route path='/users/:userId' element={<Profile></Profile>} />
-
-              <Route path='/users/myprofile' element={
+              <Route path='/users/:userId' element={
                 <PrivateRoute>
                   <Profile />
                 </PrivateRoute>
-              }>
 
-              </Route>
+              } />
+
+
+
+
 
               <Route path='/map' element={
                 <PrivateRoute>
@@ -79,8 +80,8 @@ function App() {
             </Routes>
           </div>
         </BrowserRouter>
-      </div>
-    </AuthProvider>
+      </div >
+    </AuthProvider >
   );
 }
 

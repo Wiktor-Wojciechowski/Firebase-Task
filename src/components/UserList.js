@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { collection, onSnapshot, doc } from 'firebase/firestore'
 import { db } from '../firebase';
 import { useAuth } from '../context/AuthContext';
-
+import { Link } from 'react-router-dom';
 
 export default function UserList() {
     const { users } = useAuth();
@@ -22,7 +22,7 @@ export default function UserList() {
                     </tr>
                     {users.map(user => (
                         <tr className='user-row' key={user.id}>
-                            <td><a className='profile-link' href={`users/${user.id}`} >{user.data.username}</a></td>
+                            <td><Link className='profile-link' to={`${user.id}`} replace={true}>{user.data.username}</Link></td>
                             <td><p className={user.data.loggedIn ? 'online' : 'offline'}>{showStatus(user.data.loggedIn)}</p></td>
                         </tr>
                     ))}

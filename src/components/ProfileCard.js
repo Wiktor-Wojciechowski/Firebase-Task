@@ -19,9 +19,10 @@ export default function ProfileCard(props) {
         }
     }
 
-    var dateJoined = new Date(user.creationTime);
+
 
     function showDate() {
+        var dateJoined = new Date(user.creationTime);
         var dmy = dateJoined.toLocaleDateString();
         var hour = dateJoined.getHours().toString();
         var minutes = dateJoined.getMinutes().toString();

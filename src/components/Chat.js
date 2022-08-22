@@ -36,10 +36,6 @@ export default function Chat() {
         }
     }
 
-
-
-
-
     useEffect(() => {
 
         var s = document.querySelector('.scroll-onto')
