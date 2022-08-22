@@ -9,12 +9,15 @@ export default function Blog() {
 
     const q = query(collection(db, "blog"), orderBy("date", "asc"))
 
+    const [loading, setLoading] = useState(true)
+
     const [articles, setArticles] = useState([])
     var g = 0;
     useEffect(() => {
         getDocs(q).then((snap) => {
             console.log(snap.docs)
             setArticles(snap.docs.map(doc => ({ id: doc.id, data: doc.data() })))
+            setLoading(false)
 
         })
 
@@ -30,6 +33,31 @@ export default function Blog() {
         return dmy.padStart(2, '0') + ' ' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
     }
 
+
+
+
+
+    return (
+        <div className='blog-component'>
+            <h1>Blog</h1>
+            <ul className='article-list'>
+                {loading && <div>Loading...</div>}
+                {articles.length > 0 && articles.map(art => (
+                    <Article key={art.id}
+                        title={art.data.title}
+                        description={art.data.description}
+                        author={art.data.author}
+                        content={art.data.content}
+                        seconds={art.data.date}
+                        showDate={showDate}
+
+                    />
+                ))}
+            </ul>
+        </div >
+    )
+}
+function Article(props) {
     const [show, setShow] = useState("hide")
 
     function handleClick() {
@@ -41,21 +69,15 @@ export default function Blog() {
     }
 
     return (
-        <div className='blog-component'>
-            <h1>Blog</h1>
-            <ul className='article-list'>
-                {articles.length > 0 && articles.map(art => (
-                    <li key={art.id}>
-                        <h2>{art.data.title}</h2>
-                        <span>{art.data.description}</span>
-                        <div className='readmore' onClick={handleClick}>Read More</div>
-                        <p className={show}>{art.data.content}</p>
-                        <span>by {art.data.author}</span>
-                        <div>{showDate(art.data.date.seconds * 1000)}</div>
-                        <div></div>
-                    </li>
-                ))}
-            </ul>
-        </div >
+        <li className="blog-article" >
+            <h2>{props.title}</h2>
+            <p className='article-description'>{props.description}</p>
+
+            <div className='readmore' onClick={handleClick}>Read More</div>
+            <p className={show}>{props.content}</p>
+            <span>by {props.author}</span>
+            <div>{props.showDate(props.seconds * 1000)}</div>
+            <div></div>
+        </li>
     )
 }

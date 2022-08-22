@@ -364,6 +364,16 @@ label {
 
 }
 
+.blog-article {
+    max-width: 800px;
+    margin: auto;
+}
+
+.article-description {
+    text-overflow: ellipsis;
+
+}
+
 .userlist-component,
 .blog-component,
 .about-component,
