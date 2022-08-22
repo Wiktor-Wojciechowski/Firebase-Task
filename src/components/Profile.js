@@ -69,6 +69,7 @@ export default function Profile() {
                     <div className='profile-description'>{paramUser.data.description}</div>
                     <span className='profile-email'>{paramUser.data.email}</span>
                     <span className='date-span'>Member Since: {showDate(userCreationDate)}</span>
+                    <span classname='dob-span'>Born: {showDate(paramUser.data.dateOfBirth)}</span>
                 </section>
             </div>
         )

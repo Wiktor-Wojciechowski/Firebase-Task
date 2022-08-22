@@ -114,7 +114,11 @@ export default function AccountSettings() {
                         <span><input type='email' onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
                             <button onClick={() => { changeEmail() }} disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
                     </article>
-
+                    <article>
+                        <label>Date of Birth:</label>
+                        <span><input type="date"></input>
+                            <button className='edit-button' ><img className='edit-icon' src={editIcon} ></img></button></span>
+                    </article>
                     <div className='settings-buttons'>
                         <button onClick={() => { resetPassword() }}>Reset Password</button>
 
@@ -122,9 +126,14 @@ export default function AccountSettings() {
 
                         <button className='delete-account-button' onClick={() => {
                             if (window.confirm('Are you sure you want to delete your account?')) {
-                                deleteDoc(doc(db, 'users', currentUser.uid)).then(
-                                    removeUser(currentUser.uid)
-                                )
+                                try {
+                                    deleteDoc(doc(db, 'users', currentUser.uid)).then(
+                                        removeUser(currentUser.uid)
+                                    )
+                                }
+                                catch (error) {
+                                    alert(error.code)
+                                }
                             }
                         }}>Delete Account</button>
                     </div>

@@ -78,6 +78,11 @@ export function AuthProvider({ children }) {
     function reAuthWithCredential(cred) {
         return reauthenticateWithCredential(currentUser, cred)
     }
+    function updateDOB(dob) {
+        return updateDoc(doc(db, 'users', auth.currentUser.uid), {
+            dateOfBirth: dob
+        })
+    }
 
     useEffect(() => {
         const uns = auth.onAuthStateChanged((user) => {
