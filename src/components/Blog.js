@@ -48,7 +48,7 @@ export default function Blog() {
                         description={art.data.description}
                         author={art.data.author}
                         content={art.data.content}
-                        seconds={art.data.date}
+                        seconds={art.data.date.seconds}
                         showDate={showDate}
 
                     />
