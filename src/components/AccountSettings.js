@@ -118,7 +118,7 @@ export default function AccountSettings() {
                     <div className='settings-buttons'>
                         <button onClick={() => { resetPassword() }}>Reset Password</button>
 
-                        {show && <p className='action-done'>Password Reset Email Sent <span className='close' onClick={() => { setShow(false) }}>X</span></p>}
+                        {show && <p className='action-done'>Password Reset Email Sent <div className='close' onClick={() => { setShow(false) }}>X</div></p>}
 
                         <button className='delete-account-button' onClick={() => {
                             if (window.confirm('Are you sure you want to delete your account?')) {

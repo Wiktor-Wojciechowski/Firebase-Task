@@ -548,9 +548,30 @@ tr:nth-child(even) {
 }
 
 .action-done {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     visibility: visible;
     position: absolute;
     top: 70px;
+    border: solid 1px #fff;
+    height: 60px;
+    width: 80%;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #eaf7ee;
+    border: 4px solid #bee5c8;
+    border-radius: 20px;
+    color: var(--color1);
+    font-size: 20px;
+}
+
+.close {
+    display: block;
+    position: absolute;
+    right: 10px;
+
+    cursor: pointer;
 
 }
 
