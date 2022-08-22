@@ -57,7 +57,7 @@ export default function Register() {
                     <input id="email-input" type="email" ref={emailRef} placeholder='Email' required />
                     <input id="password-input" type="password" maxLength={4096} ref={passRef} placeholder='Password' required />
                     <input id="date-of-birth-input" type='date' ref={dobRef}></input>
-                    <span className='error'>{error}</span>
+                    <div className='error'>{error}</div>
                     <button disabled={loading} >Register</button>
                 </form>
             </div>

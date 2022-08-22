@@ -16,7 +16,10 @@ export default function Sidebar(props) {
             <div className='side-menu' style={{ width: props.width }}>
                 <ul className='menu-list' >
                     <li className='menu-item'>
-                        <NavLink to='/' replace={true}  >Chat</NavLink>
+                        <NavLink to='/' replace={true}  >Home</NavLink>
+                    </li>
+                    <li className='menu-item'>
+                        <NavLink to='/chat' replace={true}  >Chat</NavLink>
                     </li>
                     <li className='menu-item'>
                         <NavLink to='/map' replace={true} >Map</NavLink>

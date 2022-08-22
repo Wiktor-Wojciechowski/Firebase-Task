@@ -31,7 +31,7 @@ export default function Topbar() {
             && e.target.className != 'menu-list') {
             menuClose()
         }
-        //console.log(e.target.tagName)
+
     }
     return (
         <div id="topbar-component">
