@@ -5,6 +5,7 @@ import { auth } from '../firebase'
 import {
     createUserWithEmailAndPassword,
     deleteUser,
+    reauthenticateWithCredential,
     signInWithEmailAndPassword,
     signOut,
     updateProfile,
@@ -73,6 +74,9 @@ export function AuthProvider({ children }) {
         return updateDoc(doc(db, 'users', uid), {
             loggedIn: bool
         })
+    }
+    function reAuthWithCredential(cred) {
+        return reauthenticateWithCredential(currentUser, cred)
     }
 
     useEffect(() => {
@@ -155,6 +159,7 @@ export function AuthProvider({ children }) {
         addUser,
         removeUser,
         updateLogState,
+        reAuthWithCredential,
 
         users,
         messages

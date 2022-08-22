@@ -13,6 +13,7 @@ export default function Blog() {
     var g = 0;
     useEffect(() => {
         getDocs(q).then((snap) => {
+            console.log(snap.docs)
             setArticles(snap.docs.map(doc => ({ id: doc.id, data: doc.data() })))
 
         })
@@ -20,6 +21,7 @@ export default function Blog() {
     }, [])
 
     function showDate(dateJoined) {
+        var dateJoined = new Date(dateJoined)
         var dmy = dateJoined.toLocaleDateString();
         var hour = dateJoined.getHours().toString();
         var minutes = dateJoined.getMinutes().toString();
@@ -28,54 +30,32 @@ export default function Blog() {
         return dmy.padStart(2, '0') + ' ' + hour.padStart(2, '0') + ':' + minutes.padStart(2, '0') + ':' + seconds.padStart(2, '0')
     }
 
+    const [show, setShow] = useState("hide")
+
+    function handleClick() {
+        if (show == "show") {
+            setShow("hide")
+        } else {
+            setShow("show")
+        }
+    }
+
     return (
-
-
-        <div className='blog-component'>A list of articles
-            <ul>
+        <div className='blog-component'>
+            <h1>Blog</h1>
+            <ul className='article-list'>
                 {articles.length > 0 && articles.map(art => (
                     <li key={art.id}>
                         <h2>{art.data.title}</h2>
-                        <span>{art.data.author}</span>
-                        <p>{art.data.content}</p>
-                        <div>{showDate(new Date(art.data.date))}</div>
+                        <span>{art.data.description}</span>
+                        <div className='readmore' onClick={handleClick}>Read More</div>
+                        <p className={show}>{art.data.content}</p>
+                        <span>by {art.data.author}</span>
+                        <div>{showDate(art.data.date.seconds * 1000)}</div>
+                        <div></div>
                     </li>
                 ))}
             </ul>
-
-            <ul className='article-list'>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-                <li>
-                    <h2>Article</h2>
-                    <span>Author</span>
-                    <p>Description</p>
-                </li>
-
-            </ul>
-        </div>
+        </div >
     )
 }

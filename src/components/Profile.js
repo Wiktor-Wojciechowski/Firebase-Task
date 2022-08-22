@@ -21,6 +21,7 @@ export default function Profile() {
     var userCreationDate = 0;
 
     function showDate(dateJoined) {
+        var dateJoined = new Date(dateJoined)
         var dmy = dateJoined.toLocaleDateString();
         var hour = dateJoined.getHours().toString();
         var minutes = dateJoined.getMinutes().toString();
@@ -59,7 +60,7 @@ export default function Profile() {
             <div>User not found</div>
         )
     } else {
-        userCreationDate = new Date(paramUser.data.creationTime);
+        userCreationDate = paramUser.data.creationTime;
         return (
             <div className='profile-component'>
                 <div className='avatar-container'><img className='avatar' src={paramUser.data.photoURL} ></img></div>

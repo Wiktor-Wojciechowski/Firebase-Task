@@ -10,11 +10,12 @@ import { doc } from 'firebase/firestore';
 import { db, storage } from '../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { auth } from '../firebase';
-import { sendPasswordResetEmail } from 'firebase/auth';
+import { reauthenticateWithCredential, sendPasswordResetEmail, updateEmail, EmailAuthProvider } from 'firebase/auth';
 import { useEffect } from 'react';
 
+
 export default function AccountSettings() {
-    const { currentUser, updateUsername, updatePhoto, removeUser } = useAuth();
+    const { currentUser, updateUsername, updatePhoto, removeUser, reAuthWithCredential } = useAuth();
 
     const usernameRef = useRef();
 
@@ -24,15 +25,35 @@ export default function AccountSettings() {
     const [username, setUsername] = useState(currentUser.displayName)
     const [email, setEmail] = useState(currentUser.email)
     const [show, setShow] = useState(false)
+    const [password, setPassword] = useState("")
 
     function updateName() {
         try {
             updateUsername(usernameRef.current.value)
+            alert("Username Updated")
         } catch (err) {
             alert(err);
         }
 
     }
+
+    async function changeEmail() {
+
+        try {
+            await updateEmail(currentUser, email).then(() => {
+                console.log('ssss')
+                window.location.reload();
+            })
+
+        } catch (error) {
+            console.log(error)
+            if (error.code == 'auth/requires-recent-login') {
+
+                alert('Please re-login')
+            }
+        }
+    }
+
 
     function uploadImage() {
         if (avatar) {
@@ -62,6 +83,8 @@ export default function AccountSettings() {
     var display1 = false;
 
 
+
+
     if (username != currentUser.displayName && username.length > 0) {
         display = true
     }
@@ -89,8 +112,9 @@ export default function AccountSettings() {
                     <article>
                         <label>Email:</label>
                         <span><input type='email' onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
-                            <button disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
+                            <button onClick={() => { changeEmail() }} disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
                     </article>
+
                     <div className='settings-buttons'>
                         <button onClick={() => { resetPassword() }}>Reset Password</button>
 
