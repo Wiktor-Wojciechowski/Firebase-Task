@@ -11,8 +11,9 @@ import {
     updateProfile,
 } from 'firebase/auth'
 
-import { db } from '../firebase'
+import { db, rtDB } from '../firebase'
 import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
+import { onDisconnect, ref, set } from 'firebase/database'
 
 const AuthContext = createContext();
 
@@ -26,9 +27,14 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
+    if (currentUser) {
+        const reference = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
+        set(reference, true)
+        onDisconnect(reference).set(false)
+    }
 
 
-
+    //cloud firestore
 
     function signup(email, password) {
         return createUserWithEmailAndPassword(auth, email, password);

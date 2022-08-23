@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext'
-import { auth } from '../firebase';
+import { auth, rtDB } from '../firebase';
+
 
 
 import { browserSessionPersistence, setPersistence } from 'firebase/auth';
+import { ref, set } from 'firebase/database';
 
 export default function Login() {
     const { currentUser, login, updateLogState } = useAuth();
@@ -26,6 +28,16 @@ export default function Login() {
         setLoading(true)
         setPersistence(auth, browserSessionPersistence).then(async () => {
             await login(email, password).then(async (userCredential) => {
+
+                const refer = ref(rtDB, 'users/' + userCredential.user.uid);
+
+                set(refer, {
+                    username: userCredential.user.displayName,
+                    id: userCredential.user.uid,
+                    photoURL: userCredential.user.photoURL,
+                    online: true,
+                })
+
                 await updateLogState(userCredential.user.uid, true)
                 navi('../');
             })
@@ -34,7 +46,7 @@ export default function Login() {
             if (error.code == 'auth/user-not-found') {
                 setError('User not found')
             }
-            if (error.code.includes('auth/wrong-password')) {
+            if (error.code == 'auth/wrong-password') {
                 setError('Wrong Password')
             }
             setLoading(false)
@@ -42,6 +54,8 @@ export default function Login() {
 
         setLoading(false)
     }
+
+
 
     return (
         //if user logged in redirect to home
