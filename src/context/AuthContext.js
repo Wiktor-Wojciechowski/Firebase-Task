@@ -12,8 +12,8 @@ import {
 } from 'firebase/auth'
 
 import { db, rtDB } from '../firebase'
-import { onSnapshot, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
-import { onDisconnect, ref, set } from 'firebase/database'
+import { onSnapshot, getDoc, updateDoc, addDoc, collection, setDoc, doc, deleteDoc, query, orderBy, limitToLast } from 'firebase/firestore'
+import { ref, onDisconnect, set, onValue, off, get } from 'firebase/database'
 
 const AuthContext = createContext();
 
@@ -24,14 +24,36 @@ export function useAuth() {
 
 //export element
 export function AuthProvider({ children }) {
+
+
+
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    if (currentUser) {
-        const reference = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
-        set(reference, true)
-        onDisconnect(reference).set(false)
+
+    const [logStates, setLogStates] = useState();
+
+    const refLog = ref(rtDB, 'users');
+
+
+    if (auth.currentUser) {
+
+        const ref1 = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
+
+        set(ref1, true)
+        onDisconnect(ref1).set(false)
+
+
+
+
+        onValue(ref1, snap => {
+            console.log(snap.val())
+            const ref2 = doc(db, 'users', auth.currentUser.uid)
+            updateDoc(ref2, { online: snap.val() })
+        })
     }
+
+
 
 
     //cloud firestore

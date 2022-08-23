@@ -5,9 +5,10 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 import { doc, updateDoc } from 'firebase/firestore'
-import { db, rtDB } from '../firebase'
+import { auth, db, rtDB } from '../firebase'
 
 import { ref, set } from 'firebase/database'
+import { signOut } from 'firebase/auth'
 
 export default function Sidebar(props) {
     const { currentUser, logout, updateLogState } = useAuth();
@@ -62,10 +63,10 @@ export default function Sidebar(props) {
                     <div className='logout-button' onClick={async () => {
 
                         const refer = ref(rtDB, 'users/' + currentUser.uid + '/online')
-                        set(refer, false).then(logout()).catch(err => {
-                            console.log(err)
-                        })
-
+                        signOut(auth).then(
+                            set(refer, false)
+                        )
+                        window.location.reload()
                     }}>
                         <button>Log Out</button>
                     </div>

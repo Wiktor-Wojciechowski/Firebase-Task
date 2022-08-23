@@ -32,9 +32,6 @@ export default function Login() {
                 const refer = ref(rtDB, 'users/' + userCredential.user.uid);
 
                 set(refer, {
-                    username: userCredential.user.displayName,
-                    id: userCredential.user.uid,
-                    photoURL: userCredential.user.photoURL,
                     online: true,
                 })
 
