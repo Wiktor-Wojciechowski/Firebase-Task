@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true)
 
 
-    const [logStates, setLogStates] = useState();
+
 
     const refLog = ref(rtDB, 'users');
 
@@ -39,16 +39,14 @@ export function AuthProvider({ children }) {
     if (auth.currentUser) {
 
         const ref1 = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
+        const ref2 = doc(db, 'users', auth.currentUser.uid)
 
         set(ref1, true)
         onDisconnect(ref1).set(false)
 
-
-
-
         onValue(ref1, snap => {
             console.log(snap.val())
-            const ref2 = doc(db, 'users', auth.currentUser.uid)
+
             updateDoc(ref2, { online: snap.val() })
         })
     }
@@ -136,6 +134,21 @@ export function AuthProvider({ children }) {
         }
     }, [])
 
+
+    const [logStates, setLogStates] = useState();
+
+    useEffect(() => {
+        const refer = ref(rtDB, 'users')
+        onValue(refer, async (s) => {
+            setLogStates(s.val())
+
+        })
+        return () => {
+            off(refer)
+        }
+    }, [])
+
+
     const [messages, setMessages] = useState([])
 
     const dbRef = collection(db, 'messages');
@@ -195,6 +208,7 @@ export function AuthProvider({ children }) {
         reAuthWithCredential,
 
         users,
+        logStates,
         messages
     }
 
