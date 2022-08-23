@@ -11,11 +11,7 @@ export default function UserList() {
     function showStatus(bool) {
         return bool ? 'Online' : 'Offline';
     }
-    if (users.length > 0 && logStates) {
-        const p = users[2].data.userId
-        console.log(p)
-        console.log(logStates[p].online)
-    }
+
     return (
         <div className='userlist-component' >
             <table className='user-table' >
@@ -24,7 +20,7 @@ export default function UserList() {
                         <th>Username</th>
                         <th>Status</th>
                     </tr>
-                    {users.map(user => (
+                    {logStates && users.map(user => (
                         <tr className='user-row' key={user.id}>
                             <td><Link className='profile-link' to={`${user.id}`} replace={true}>{user.data.username}</Link></td>
                             <td><p className={user.data.online ? 'online' : 'offline'}>{showStatus(user.data.online)}</p></td>
