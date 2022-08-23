@@ -66,10 +66,12 @@ export default function Profile() {
                 <div className='avatar-container'><img className='avatar' src={paramUser.data.photoURL} ></img></div>
                 <section>
                     <h1 className='profile-username'>{paramUser.data.username}</h1>
-                    <div className='profile-description'>{paramUser.data.description}</div>
-                    <span className='profile-email'>{paramUser.data.email}</span>
-                    <span className='date-span'>Member Since: {showDate(userCreationDate)}</span>
-                    <span classname='dob-span'>Born: {showDate(paramUser.data.dateOfBirth)}</span>
+                    <div className='text-section'>
+                        <div className='profile-description'>{paramUser.data.description}</div>
+                        <div className='profile-email'>{paramUser.data.email}</div>
+                        <div className='date-span'>Member Since: {showDate(userCreationDate)}</div>
+                        {paramUser.data.dateOfBirth && <div classname='dob-span'>Born: {showDate(paramUser.data.dateOfBirth)}</div>}
+                    </div>
                 </section>
             </div>
         )

@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext'
-import { db } from '../firebase';
-import { collection } from 'firebase/firestore';
+import { auth } from '../firebase';
+
+
+import { browserSessionPersistence, setPersistence } from 'firebase/auth';
 
 export default function Login() {
     const { currentUser, login, updateLogState } = useAuth();
@@ -21,25 +23,23 @@ export default function Login() {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        try {
-            setLoading(true)
+        setLoading(true)
+        setPersistence(auth, browserSessionPersistence).then(async () => {
             await login(email, password).then(async (userCredential) => {
                 await updateLogState(userCredential.user.uid, true)
                 navi('../');
             })
-
-
-
-        } catch (error) {
-            console.log((error.code))
-            if (error.code.includes('auth/user-not-found')) {
-                setError('User does not exist')
+        }).catch(error => {
+            console.log(error)
+            if (error.code == 'auth/user-not-found') {
+                setError('User not found')
             }
             if (error.code.includes('auth/wrong-password')) {
                 setError('Wrong Password')
             }
             setLoading(false)
-        }
+        })
+
         setLoading(false)
     }
 
