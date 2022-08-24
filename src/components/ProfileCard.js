@@ -17,7 +17,7 @@ export default function ProfileCard(props) {
         }
     }
 
-    if (Object.keys(user).length != 0) { console.log(user) }
+
 
     function showDate() {
         var dateJoined = new Date(user.creationTime);
@@ -44,6 +44,16 @@ export default function ProfileCard(props) {
 
     function onlineStatus() {
         return user.online ? 'Online' : 'Offline'
+    }
+
+    if (Object.keys(user) == 0) {
+        return (
+            <div className='profile-card'>
+                <img className='avatar' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                <h2>User not found</h2>
+
+            </div>
+        )
     }
 
     return (

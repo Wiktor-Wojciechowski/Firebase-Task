@@ -11,7 +11,7 @@ export default function Profile() {
     const [loading, setLoading] = useState(true);
 
     var userIdObj = useParams();
-    console.log(userIdObj)
+
     var userId = userIdObj.userId
 
     function findId(user) {
@@ -43,10 +43,10 @@ export default function Profile() {
             cU = true
         }
 
-        console.log('a')
+
         if (!cU) {
             paramUser = users.find(findId)
-            console.log(paramUser)
+
         }
 
     }
