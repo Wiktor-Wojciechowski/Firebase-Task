@@ -43,20 +43,7 @@ export default function Chat() {
         s.scrollIntoView()
 
     }, [messages])
-    /*
-        function handleClick(e) {
-            console.log(e.target.className)
-            if (e.target.className == 'profile-card') {
-                alert('dd')
-            }
-    
-    
-        }
 
-    useEffect(() => {
-        document.addEventListener('click', handleClick)
-    }, [])
-*/
     return (
         <div className='chat-component'>
             <div className='message-box'>

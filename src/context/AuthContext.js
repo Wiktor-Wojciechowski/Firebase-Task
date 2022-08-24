@@ -132,14 +132,14 @@ export function AuthProvider({ children }) {
 
 
     if (auth.currentUser) {
-        console.log(auth.currentUser)
+
         const ref1 = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
 
         onDisconnect(ref1).set(false)
 
         set(ref1, true)
 
-        console.log(ref1)
+
     }
 
 
@@ -167,10 +167,10 @@ export function AuthProvider({ children }) {
         const unsubscribe = onSnapshot(q, snapshot => {
 
             if (snapshot != prevSnap && prevSnap && !document.hasFocus() && auth.currentUser) {
-                console.log('new msg')
+
 
                 Notification.requestPermission().then((result) => {
-                    console.log(result);
+
 
                     var text = snapshot.docs[snapshot.docs.length - 1].data();
 
@@ -195,7 +195,7 @@ export function AuthProvider({ children }) {
 
         })
 
-        console.log('loaded')
+
         return () => {
             unsubscribe()
         }

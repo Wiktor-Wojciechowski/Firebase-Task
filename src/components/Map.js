@@ -32,7 +32,7 @@ export default function Map() {
     const { currentUser, users, loading } = useAuth();
 
     useEffect(() => {
-        console.log('map')
+
         if (currentUser) {
 
             var id = navigator.geolocation.watchPosition((pos) => {
@@ -75,12 +75,6 @@ export default function Map() {
                     <MarkerContainer key={user.id} lat={user.data.latitude} long={user.data.longitude} username={user.data.username} userStatus={user.data.loggedIn} />
                 ))}
 
-                {/* <Marker position={[51.505, -0.09]}>
-                    <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                    </Popup>
-                </Marker>
-                <Marker position={[52.505, -0.09]}></Marker> */}
             </MapContainer>
         </div >
     )

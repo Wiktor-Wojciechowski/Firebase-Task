@@ -15,7 +15,7 @@ export default function Blog() {
     var g = 0;
     useEffect(() => {
         getDocs(q).then((snap) => {
-            console.log(snap.docs)
+
             setArticles(snap.docs.map(doc => ({ id: doc.id, data: doc.data() })))
             setLoading(false)
 

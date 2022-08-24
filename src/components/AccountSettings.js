@@ -41,7 +41,7 @@ export default function AccountSettings() {
 
         try {
             await updateEmail(currentUser, email).then(() => {
-                console.log('ssss')
+
                 window.location.reload();
             })
 
@@ -62,7 +62,7 @@ export default function AccountSettings() {
             uploadBytes(avatarRef, avatar).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
                     updatePhoto(url)
-                    console.log(url)
+
                     setPhoto(url)
                     document.getElementById('upload-avatar').value = null
                 })
@@ -99,7 +99,7 @@ export default function AccountSettings() {
                     <img className='avatar' src={photo}></img>
 
                     <label htmlFor='upload-avatar'>Change Avatar:</label>
-                    <input type="file" id="upload-avatar" onChange={(event) => { avatar = event.target.files[0]; console.log(avatar); uploadImage() }}></input>
+                    <input type="file" id="upload-avatar" onChange={(event) => { avatar = event.target.files[0]; uploadImage() }}></input>
 
 
                 </div>
