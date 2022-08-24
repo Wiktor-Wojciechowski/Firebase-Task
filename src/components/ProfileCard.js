@@ -7,7 +7,7 @@ import { useAuth } from '../context/AuthContext'
 
 export default function ProfileCard(props) {
 
-    const { users } = useAuth()
+    const { users, logStates } = useAuth()
 
     var user = {}
 
@@ -43,7 +43,7 @@ export default function ProfileCard(props) {
     }, [])
 
     function onlineStatus() {
-        return user.online ? 'Online' : 'Offline'
+        return logStates[user.userId].online ? 'Online' : 'Offline'
     }
 
     if (Object.keys(user) == 0) {
@@ -57,12 +57,17 @@ export default function ProfileCard(props) {
     }
 
     return (
+
         <div className='profile-card'>
-            <img className='avatar' src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
-            <h2>{user.username}</h2>
-            <div><a href={`users/${user.userId}`} >Visit Profile</a></div>
-            <span className={onlineStatus().toLowerCase()}>{onlineStatus()}</span>
-            <span className='date-span'>Member Since: {showDate()}</span>
+            {(logStates && Object.keys(user) != 0) &&
+                <>
+                    <img className='avatar' src={user.photoURL || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} />
+                    <h2>{user.username}</h2>
+                    <div><a href={`users/${user.userId}`} >Visit Profile</a></div>
+                    <span className={onlineStatus().toLowerCase()}>{onlineStatus()}</span>
+                    <span className='date-span'>Member Since: {showDate()}</span>
+                </>
+            }
         </div>
     )
 }

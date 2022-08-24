@@ -23,14 +23,17 @@ export default function Register() {
     async function handleSubmit(event) {
         event.preventDefault();
         const username = usernameRef.current.value
+        const dateOfBirth = dobRef.current.value
+        console.log('1 ', dateOfBirth)
         if (dobRef.current.value) {
             try {
+                console.log('2 ', dateOfBirth)
                 setLoading(true)
                 await signup(emailRef.current.value, passRef.current.value).then(async (userCredential) => {
                     await addUser((userCredential.user.uid)).then(() => {
                         updateUsername(username).then(() => {
                             updatePhoto('https://cdn-icons-png.flaticon.com/512/149/149071.png').then(() => {
-                                updateDOB(dobRef.current.value).then(() => {
+                                updateDOB(dateOfBirth).then(() => {
                                     navi('../');
                                 })
 

@@ -70,7 +70,7 @@ export default function Profile() {
                         <div className='profile-description'>{paramUser.data.description}</div>
                         <div className='profile-email'>{paramUser.data.email}</div>
                         <div className='date-span'>Member Since: {showDate(userCreationDate)}</div>
-                        {paramUser.data.dateOfBirth && <div classname='dob-span'>Born: {showDate(paramUser.data.dateOfBirth)}</div>}
+                        {paramUser.data.dateOfBirth && <div classname='dob-span'>Born: {paramUser.data.dateOfBirth}</div>}
                     </div>
                 </section>
             </div>
