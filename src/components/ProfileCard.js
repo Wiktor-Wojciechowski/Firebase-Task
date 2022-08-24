@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
+import { isCompositeComponentWithType } from 'react-dom/test-utils'
 
 
 import { useAuth } from '../context/AuthContext'
@@ -7,9 +8,6 @@ import { useAuth } from '../context/AuthContext'
 export default function ProfileCard(props) {
 
     const { users } = useAuth()
-
-    console.log(props.show)
-
 
     var user = {}
 
@@ -19,7 +17,7 @@ export default function ProfileCard(props) {
         }
     }
 
-
+    if (Object.keys(user).length != 0) { console.log(user) }
 
     function showDate() {
         var dateJoined = new Date(user.creationTime);
@@ -45,7 +43,7 @@ export default function ProfileCard(props) {
     }, [])
 
     function onlineStatus() {
-        return user.loggedIn ? 'Online' : 'Offline'
+        return user.online ? 'Online' : 'Offline'
     }
 
     return (

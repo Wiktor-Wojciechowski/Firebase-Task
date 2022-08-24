@@ -23,7 +23,7 @@ export default function UserList() {
                     {logStates && users.map(user => (
                         <tr className='user-row' key={user.id}>
                             <td><Link className='profile-link' to={`${user.id}`} replace={true}>{user.data.username}</Link></td>
-                            <td><p className={user.data.online ? 'online' : 'offline'}>{showStatus(user.data.online)}</p></td>
+                            <td><p className={logStates[user.id].online ? 'online' : 'offline'}>{showStatus(logStates[user.id].online)}</p></td>
                         </tr>
                     ))}
                 </tbody>
