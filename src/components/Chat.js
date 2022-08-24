@@ -12,7 +12,9 @@ import ProfileCard from './ProfileCard'
 
 
 export default function Chat() {
-
+    useEffect(() => {
+        document.title = 'Chat'
+    }, [])
     const { currentUser, messages } = useAuth();
 
     const [text, setText] = useState('')

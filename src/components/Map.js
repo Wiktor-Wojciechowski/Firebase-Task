@@ -32,6 +32,9 @@ export default function Map() {
     const { currentUser, users, loading } = useAuth();
 
     useEffect(() => {
+        document.title = 'Map'
+    }, [])
+    useEffect(() => {
 
         if (currentUser) {
 

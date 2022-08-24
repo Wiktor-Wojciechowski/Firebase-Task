@@ -2,8 +2,12 @@ import React from 'react'
 
 import reactLogo from '../images/react_icon.png'
 import firebaseLogo from '../images/firebase_logo.png'
+import { useEffect } from 'react'
 
 export default function About() {
+    useEffect(() => {
+        document.title = 'About'
+    }, [])
     return (
         <div className='about-component'>
 

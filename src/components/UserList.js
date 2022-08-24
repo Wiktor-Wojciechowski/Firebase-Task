@@ -1,7 +1,11 @@
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function UserList() {
+    useEffect(() => {
+        document.title = 'Users'
+    }, [])
     const { users, logStates } = useAuth();
 
     function showStatus(bool) {

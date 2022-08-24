@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import { useAuth } from '../context/AuthContext'
 
@@ -15,6 +15,9 @@ import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
 
 
 export default function AccountSettings() {
+    useEffect(() => {
+        document.title = 'Account Settings'
+    }, [])
     const { currentUser, updateUsername, updatePhoto, removeUser, reAuthWithCredential } = useAuth();
 
     const usernameRef = useRef();

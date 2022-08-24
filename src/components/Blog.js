@@ -6,6 +6,9 @@ import { db } from '../firebase'
 
 
 export default function Blog() {
+    useEffect(() => {
+        document.title = 'Blog'
+    }, [])
 
     const q = query(collection(db, "blog"), orderBy("date", "asc"))
 

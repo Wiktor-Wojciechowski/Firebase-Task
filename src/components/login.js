@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext'
@@ -11,6 +11,9 @@ import { browserSessionPersistence, setPersistence } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
 
 export default function Login() {
+    useEffect(() => {
+        document.title = '<Log in>'
+    }, [])
     const { currentUser, login, updateLogState } = useAuth();
     const [loading, setLoading] = useState(false)
 

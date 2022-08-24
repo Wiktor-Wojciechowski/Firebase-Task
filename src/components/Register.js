@@ -1,11 +1,14 @@
 import React from 'react'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext'
 
 export default function Register() {
+    useEffect(() => {
+        document.title = 'Register'
+    }, [])
     const { currentUser, signup, updatePhoto, updateUsername, addUser, updateDOB } = useAuth();
 
     const [loading, setLoading] = useState(false)

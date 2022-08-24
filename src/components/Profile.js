@@ -1,10 +1,13 @@
 import React from 'react'
-
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext';
 
 
 export default function Profile() {
+    useEffect(() => {
+        document.title = 'User Profile'
+    }, [])
 
     const { currentUser, users } = useAuth();
 

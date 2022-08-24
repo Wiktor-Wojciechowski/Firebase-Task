@@ -1,10 +1,13 @@
 import React from 'react'
-
+import { useEffect } from 'react'
 import emailIcon from '../images/email-icon.svg'
 import phoneIcon from '../images/phone-outline-icon.svg'
 import markerIcon from '../images/map-pin-point-icon.svg'
 
 export default function Contact() {
+    useEffect(() => {
+        document.title = 'Contact'
+    }, [])
     return (
         <div className='contact-component'>
             <h1>Contact us:</h1>
