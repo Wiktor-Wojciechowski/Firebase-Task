@@ -1,4 +1,3 @@
-import { updateProfile } from 'firebase/auth';
 import React from 'react'
 import { useState, useRef } from 'react'
 

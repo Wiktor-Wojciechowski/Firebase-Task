@@ -1,4 +1,4 @@
-import { deleteDoc } from 'firebase/firestore';
+
 import React from 'react'
 
 import { useRef, useState } from 'react';
@@ -6,12 +6,12 @@ import { useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext'
 
 import editIcon from '../images/edit_pen.svg'
-import { doc } from 'firebase/firestore';
-import { db, storage } from '../firebase';
+
+import { storage } from '../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { auth } from '../firebase';
-import { reauthenticateWithCredential, sendPasswordResetEmail, updateEmail, EmailAuthProvider } from 'firebase/auth';
-import { useEffect } from 'react';
+import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
+
 
 
 export default function AccountSettings() {

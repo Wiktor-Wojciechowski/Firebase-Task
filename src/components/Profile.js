@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext';
 
@@ -8,7 +8,7 @@ export default function Profile() {
 
     const { currentUser, users } = useAuth();
 
-    const [loading, setLoading] = useState(true);
+
 
     var userIdObj = useParams();
 

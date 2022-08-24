@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 import { useAuth } from '../context/AuthContext'
 
 import { db } from '../firebase'
-import { addDoc, collection, onSnapshot, orderBy, query, limit, serverTimestamp, limitToLast } from 'firebase/firestore'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
-import { auth } from '../firebase'
-import UserList from './UserList'
+
 
 import ProfileCard from './ProfileCard'
-import { ref } from 'firebase/storage'
+
 
 export default function Chat() {
 

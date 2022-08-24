@@ -1,7 +1,3 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { collection, onSnapshot, doc } from 'firebase/firestore'
-import { db } from '../firebase';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
