@@ -80,9 +80,13 @@ export function AuthProvider({ children }) {
     }
     function removeUser(uid) {
         return signOut(auth).then(() => {
-            deleteDoc(doc(db, 'users', uid)).then(() => {
-                deleteUser(currentUser)
+            const r = ref(rtDB, 'users/' + uid)
+            set(r, null).then(() => {
+                deleteDoc(doc(db, 'users', uid)).then(() => {
+                    deleteUser(currentUser)
+                })
             })
+
         })
     }
     function updateLogState(uid, bool) {
@@ -128,7 +132,7 @@ export function AuthProvider({ children }) {
 
 
     if (auth.currentUser) {
-
+        console.log(auth.currentUser)
         const ref1 = ref(rtDB, 'users/' + auth.currentUser.uid + '/online')
 
         onDisconnect(ref1).set(false)
@@ -208,6 +212,7 @@ export function AuthProvider({ children }) {
         removeUser,
         updateLogState,
         reAuthWithCredential,
+        updateDOB,
 
         users,
         logStates,

@@ -127,9 +127,9 @@ export default function AccountSettings() {
                         <button className='delete-account-button' onClick={() => {
                             if (window.confirm('Are you sure you want to delete your account?')) {
                                 try {
-                                    deleteDoc(doc(db, 'users', currentUser.uid)).then(
-                                        removeUser(currentUser.uid)
-                                    )
+
+                                    removeUser(currentUser.uid)
+
                                 }
                                 catch (error) {
                                     alert(error.code)
