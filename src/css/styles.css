@@ -284,6 +284,11 @@ label {
     margin: 0;
 }
 
+.showProfileCard {
+    display: flex;
+    align-items: center;
+}
+
 .user-chat-icon {
     width: 30px;
     height: 30px;

@@ -99,9 +99,11 @@ function ChatMessage(props) {
         <div className={'message' + ' ' + messageSender}>
             <span className='left-side'>
                 <span className='time-span'>{toDate(props.date)}</span>
-                <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
-                {show && <ProfileCard show={show} setShow={setShow} senderId={props.senderId} />}
-                <span className='username' >{props.username}</span>
+                <span onClick={() => { setShow(!show) }} className='showProfileCard'  >
+                    <img onClick={() => { setShow(!show) }} className='user-chat-icon' src={props.picture || 'https://cdn-icons-png.flaticon.com/512/149/149071.png'} ></img>
+                    {show && <ProfileCard show={show} setShow={setShow} senderId={props.senderId} />}
+                    <span className='username' >{props.username}</span>
+                </span>
             </span>
             <p className='message-content'>{props.text}</p>
 
