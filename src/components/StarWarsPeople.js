@@ -63,7 +63,9 @@ function Person(props) {
         <div>
             <div onClick={() => { setShow(!show) }}>{props.person.name}</div>
             {show &&
-                <div>{props.person.name}</div>
+                Object.entries(props.person).map(property => (
+                    <div className={property[0]}>{property[1]}</div>
+                ))
 
             }
         </div>
