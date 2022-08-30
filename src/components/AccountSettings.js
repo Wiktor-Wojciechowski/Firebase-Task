@@ -18,7 +18,7 @@ export default function AccountSettings() {
     useEffect(() => {
         document.title = 'Account Settings'
     }, [])
-    const { currentUser, updateUsername, updatePhoto, removeUser, reAuthWithCredential } = useAuth();
+    const { currentUser, updateUsername, updatePhoto, removeUser } = useAuth();
 
     const usernameRef = useRef();
 
@@ -28,7 +28,7 @@ export default function AccountSettings() {
     const [username, setUsername] = useState(currentUser.displayName)
     const [email, setEmail] = useState(currentUser.email)
     const [show, setShow] = useState(false)
-    const [password, setPassword] = useState("")
+
 
     function updateName() {
         try {
@@ -44,7 +44,7 @@ export default function AccountSettings() {
 
         try {
             await updateEmail(currentUser, email).then(() => {
-
+                alert("Email updated");
                 window.location.reload();
             })
 
@@ -117,11 +117,11 @@ export default function AccountSettings() {
                         <span><input type='email' onChange={(e) => { setEmail(e.target.value) }} defaultValue={currentUser.email}></input>
                             <button onClick={() => { changeEmail() }} disabled={!display1} title='Save Changes' className='edit-button'><img className="edit-icon" src={editIcon}></img></button> </span>
                     </article>
-                    <article>
+                    {/* <article>
                         <label>Date of Birth:</label>
                         <span><input type="date"></input>
                             <button className='edit-button' ><img className='edit-icon' src={editIcon} ></img></button></span>
-                    </article>
+                    </article> */}
                     <div className='settings-buttons'>
                         <button onClick={() => { resetPassword() }}>Reset Password</button>
 

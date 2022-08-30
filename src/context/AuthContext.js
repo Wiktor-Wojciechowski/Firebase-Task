@@ -180,9 +180,6 @@ export function AuthProvider({ children }) {
 
                         })
                     }
-
-
-
                 })
             }
             prevSnap = snapshot;
@@ -213,6 +210,7 @@ export function AuthProvider({ children }) {
         updateLogState,
         reAuthWithCredential,
         updateDOB,
+
 
         users,
         logStates,

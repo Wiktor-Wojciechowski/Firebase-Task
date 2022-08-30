@@ -13,6 +13,7 @@ import Map from './components/Map';
 import PrivateRoute from './components/PrivateRoute';
 import Register from './components/Register';
 import Sidebar from './components/Sidebar'
+import StarWarsPeople from './components/StarWarsPeople';
 import Topbar from './components/Topbar';
 import UserList from './components/UserList';
 import Profile from './components/Profile';
@@ -39,7 +40,7 @@ function App() {
               <Route path='/blog' element={<Blog />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/login' element={<Login />} />
-
+              <Route path='/star-wars-people' element={<StarWarsPeople />} />
               <Route path='/register' element={<Register />} />
               <Route path="/chat" element={
                 <PrivateRoute>

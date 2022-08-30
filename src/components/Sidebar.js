@@ -34,6 +34,9 @@ export default function Sidebar(props) {
                     <NavLink to='/about' replace={true} >About</NavLink>
                 </li>
                 <li className='menu-item'>
+                    <NavLink to='/star-wars-people' replace={true} >People of Star Wars</NavLink>
+                </li>
+                <li className='menu-item'>
                     <NavLink to='/blog' replace={true} >Blog</NavLink>
                 </li>
                 <li className='menu-item'>

@@ -304,6 +304,12 @@ label {
     width: 100%;
 }
 
+.person-list {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
 .profile-card {
     width: 250px;
 
