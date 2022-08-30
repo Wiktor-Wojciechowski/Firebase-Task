@@ -306,8 +306,31 @@ label {
 
 .person-list {
     max-width: 1000px;
-    margin: auto;
-    text-align: center;
+    margin: 10px;
+
+}
+
+.person {}
+
+
+
+.person h2 {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.properties {
+    background-color: hsl(256, 100%, 24%);
+
+    padding: 10px;
+    max-width: 1000px;
+
+}
+
+
+.property {
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .next-button {
@@ -321,6 +344,18 @@ label {
     width: 50%;
     text-align: center;
 }
+
+.previous-button span,
+.next-button span {
+    cursor: pointer;
+}
+
+.films,
+.vehicles,
+.starships,
+.created,
+.edited,
+.url {}
 
 .profile-card {
     width: 250px;
