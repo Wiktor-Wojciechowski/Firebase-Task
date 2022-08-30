@@ -310,6 +310,18 @@ label {
     text-align: center;
 }
 
+.next-button {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+.previous-button {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
 .profile-card {
     width: 250px;
 
