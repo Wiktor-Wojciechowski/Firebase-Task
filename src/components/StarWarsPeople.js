@@ -9,21 +9,27 @@ export default function StarWarsPeople() {
     useEffect(() => {
         document.title = 'People of Star Wars'
     }, [])
+
+    const [loading, setLoading] = useState(true);
     const [page, setPage] = useState()
 
     useEffect(() => {
-        fetch('https://swapi.dev/api/people').then(data => {
+        fetchPage('https://swapi.dev/api/people')
+    }, [])
+
+    function fetchPage(url) {
+        setLoading(true)
+        fetch(url).then(data => {
             console.log(data); data.json().then((p => {
 
                 setPage(p)
+                setLoading(false);
                 console.log(page)
             }))
         })
-    }, [])
+    }
 
-
-
-    if (page) {
+    if (page && !loading) {
         return (
             <div className='starwarspeople-component'>
                 <div className='person-list'>{page.results.map(person => (
@@ -36,25 +42,20 @@ export default function StarWarsPeople() {
 
                 ))}
                 </div>
+                <div className='buttons'>
+                    <div className='previous-button'><span onClick={() => {
+                        if (page.previous) {
+                            fetchPage(page.previous)
+                        }
+                    }}>Previous Page</span></div>
 
-                <div className='next-button'><span onClick={() => {
-                    if (page.previous) {
-                        fetch(page.previous).then(data => data.json().then((p => {
-                            setPage(p)
-                            console.log(page)
-                        })))
-                    }
-                }}>Previous</span></div>
+                    <div className='next-button' ><span onClick={() => {
+                        if (page.next) {
+                            fetchPage(page.next)
+                        }
 
-                <div className='previous-button' ><span onClick={() => {
-                    if (page.next) {
-                        fetch(page.next).then(data => data.json().then((p => {
-                            setPage(p)
-                            console.log(page)
-                        })))
-                    }
-
-                }}>Next</span></div>
+                    }}>Next Page</span></div>
+                </div>
             </div>
 
         )
@@ -87,7 +88,9 @@ function Person(props) {
                 <div className={'property '}>Created: {props.person.created}</div>
                 <div className={'property '}>Edited: {props.person.edited}</div>
                 <div className={'property '}>URL: {props.person.url}</div>
-                {/*}
+
+                {/* displays all properties (less customizable) */}
+                {/*
                 {Object.entries(props.person).map(property => (
                     <div key={property} className={'property ' + property[0]}>{property[0]}: {property[1]}</div>
                 ))}

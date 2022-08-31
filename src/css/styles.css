@@ -304,9 +304,26 @@ label {
     width: 100%;
 }
 
+.starwarspeople-component {
+    max-width: 1000px;
+    margin: 0 auto;
+    height: calc(100vh - 60px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.starwarspeople-component .buttons {
+    width: 100%;
+    align-self: flex-end;
+}
+
 .person-list {
     max-width: 1000px;
     margin: 10px;
+    flex: none;
 
 }
 
@@ -356,6 +373,8 @@ label {
 .created,
 .edited,
 .url {}
+
+
 
 .profile-card {
     width: 250px;
