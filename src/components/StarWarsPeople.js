@@ -59,7 +59,7 @@ export default function StarWarsPeople() {
 
                 setPage(p)
                 setLoading(false);
-                console.log(page)
+
             }))
         })
     }
@@ -152,7 +152,7 @@ function Person(props) {
     //get species
     useEffect(() => {
         let arr = []
-        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
+
         let itemsProcessed = 0;
 
         if (typeof props.person.species !== undefined) {
@@ -161,7 +161,7 @@ function Person(props) {
                     fetch(props.person.species[q]).then(w => w.json().then((e) => {
                         arr.push(e.name)
                         itemsProcessed++;
-                        console.log(arr)
+
                         if (itemsProcessed === props.person.species.length) {
                             if (arr[0] == undefined) {
                                 setSpecies(['unknown'])
@@ -179,10 +179,9 @@ function Person(props) {
         }
 
     }, [])
-
+    //get vehicles
     useEffect(() => {
         let arr = []
-        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
         let itemsProcessed = 0;
 
         if (typeof props.person.vehicles !== undefined) {
@@ -191,7 +190,7 @@ function Person(props) {
                     fetch(props.person.vehicles[q]).then(w => w.json().then((e) => {
                         arr.push(e.name)
                         itemsProcessed++;
-                        console.log(arr)
+
                         if (itemsProcessed === props.person.vehicles.length) {
                             if (arr[0] == undefined) {
                                 setVehicles(['unknown'])
@@ -209,9 +208,9 @@ function Person(props) {
         }
 
     }, [])
+    //get starships
     useEffect(() => {
         let arr = []
-        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
         let itemsProcessed = 0;
 
         if (typeof props.person.starships !== undefined) {
@@ -220,7 +219,7 @@ function Person(props) {
                     fetch(props.person.starships[q]).then(w => w.json().then((e) => {
                         arr.push(e.name)
                         itemsProcessed++;
-                        console.log(arr)
+
                         if (itemsProcessed === props.person.starships.length) {
                             if (arr[0] == undefined) {
                                 setStarships(['unknown'])
