@@ -121,6 +121,8 @@ function Person(props) {
     const [homeworld, setHomeworld] = useState()
     const [films, setFilms] = useState([])
     const [species, setSpecies] = useState([])
+    const [vehicles, setVehicles] = useState([])
+    const [starships, setStarships] = useState([])
 
     useEffect(() => {
         fetch(props.person.homeworld).then(f => f.json().then(d => {
@@ -178,6 +180,66 @@ function Person(props) {
 
     }, [])
 
+    useEffect(() => {
+        let arr = []
+        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
+        let itemsProcessed = 0;
+
+        if (typeof props.person.vehicles !== undefined) {
+            if (props.person.vehicles.length > 0) {
+                for (let q = 0; q < props.person.vehicles.length; q++) {
+                    fetch(props.person.vehicles[q]).then(w => w.json().then((e) => {
+                        arr.push(e.name)
+                        itemsProcessed++;
+                        console.log(arr)
+                        if (itemsProcessed === props.person.vehicles.length) {
+                            if (arr[0] == undefined) {
+                                setVehicles(['unknown'])
+
+                            } else {
+                                setVehicles(arr)
+                            }
+                        }
+                    }))
+                }
+
+            } else {
+                setVehicles(['none'])
+            }
+        }
+
+    }, [])
+    useEffect(() => {
+        let arr = []
+        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
+        let itemsProcessed = 0;
+
+        if (typeof props.person.starships !== undefined) {
+            if (props.person.starships.length > 0) {
+                for (let q = 0; q < props.person.starships.length; q++) {
+                    fetch(props.person.starships[q]).then(w => w.json().then((e) => {
+                        arr.push(e.name)
+                        itemsProcessed++;
+                        console.log(arr)
+                        if (itemsProcessed === props.person.starships.length) {
+                            if (arr[0] == undefined) {
+                                setStarships(['unknown'])
+
+                            } else {
+                                setStarships(arr)
+                            }
+                        }
+                    }))
+                }
+
+            } else {
+                setSpecies(['none'])
+            }
+        }
+
+    }, [])
+
+
 
     return (
         <div className='person'>
@@ -194,8 +256,8 @@ function Person(props) {
                 <div className={'property '}>Homeworld: {homeworld || 'Loading...'}</div>
                 <div className={'property '}>Films: {films.join(', ') || 'Loading...'}</div>
                 <div className={'property '}>Species: {species.join(', ') || 'Loading...'}</div>
-                <div className={'property '}>Vehicles: {props.person.vehicles}</div>
-                <div className={'property '}>Starships: {props.person.starships}</div>
+                <div className={'property '}>Vehicles: {vehicles.join(', ') || 'Loading...'}</div>
+                <div className={'property '}>Starships: {starships.join(', ' || 'Loading...')}</div>
                 <div className={'property '}>Created: {props.person.created}</div>
                 <div className={'property '}>Edited: {props.person.edited}</div>
                 <div className={'property '}>URL: {props.person.url}</div>
