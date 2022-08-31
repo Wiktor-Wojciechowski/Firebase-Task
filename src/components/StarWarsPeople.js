@@ -257,7 +257,7 @@ function Person(props) {
                 <div className={'property '}>Films: {films.join(', ') || 'Loading...'}</div>
                 <div className={'property '}>Species: {species.join(', ') || 'Loading...'}</div>
                 <div className={'property '}>Vehicles: {vehicles.join(', ') || 'Loading...'}</div>
-                <div className={'property '}>Starships: {starships.join(', ' || 'Loading...')}</div>
+                <div className={'property '}>Starships: {starships.join(', ') || 'Loading...'}</div>
                 <div className={'property '}>Created: {props.person.created}</div>
                 <div className={'property '}>Edited: {props.person.edited}</div>
                 <div className={'property '}>URL: {props.person.url}</div>
