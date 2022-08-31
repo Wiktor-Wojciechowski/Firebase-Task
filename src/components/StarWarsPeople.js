@@ -3,7 +3,42 @@ import { useState, useEffect } from 'react'
 
 export default function StarWarsPeople() {
 
-    fetch('https://swapi.dev/api/people/1').then(r => console.log(r))
+    const [films, setFilms] = useState();
+    const [planets, setPlanets] = useState();
+    const [species, setSpecies] = useState();
+    const [starships, setStarships] = useState();
+    const [vehicles, setVehicles] = useState();
+    /*
+        useEffect(() => {
+            fetch('https://swapi.dev/api/films/').then((f) => {
+                f.json().then((d) => {
+                    console.log(d)
+                })
+            })
+            fetch('https://swapi.dev/api/planets/').then((f) => {
+                f.json().then((d) => {
+                    console.log(d)
+                })
+            })
+            fetch('https://swapi.dev/api/species/').then((f) => {
+                f.json().then((d) => {
+                    console.log(d)
+                })
+            })
+            fetch('https://swapi.dev/api/starships/').then((f) => {
+                f.json().then((d) => {
+                    console.log(d)
+                })
+            })
+            fetch('https://swapi.dev/api/vehicles/').then((f) => {
+                f.json().then((d) => {
+                    console.log(d)
+                })
+            })
+    
+        }, [])
+    */
+
 
 
     useEffect(() => {
@@ -20,7 +55,7 @@ export default function StarWarsPeople() {
     function fetchPage(url) {
         setLoading(true)
         fetch(url).then(data => {
-            console.log(data); data.json().then((p => {
+            data.json().then((p => {
 
                 setPage(p)
                 setLoading(false);
@@ -32,41 +67,85 @@ export default function StarWarsPeople() {
     if (page && !loading) {
         return (
             <div className='starwarspeople-component'>
-                <div className='person-list'>{page.results.map(person => (
+                <div className='wrapper'>
+                    <h1 className='title'>People of Star Wars</h1>
+                    <div className='person-list'>{page.results.map(person => (
 
-                    <Person key={person.url}
-                        person={person}
-                    />
+                        <Person key={person.url}
+                            person={person}
+
+                        />
 
 
 
-                ))}
-                </div>
-                <div className='buttons'>
-                    <div className='previous-button'><span onClick={() => {
-                        if (page.previous) {
-                            fetchPage(page.previous)
-                        }
-                    }}>Previous Page</span></div>
+                    ))}
+                    </div>
+                    <div className='buttons'>
 
-                    <div className='next-button' ><span onClick={() => {
-                        if (page.next) {
+                        <div className='previous-button'>
+                            {page.previous &&
+                                <span onClick={() => {
+                                    if (page.previous) {
+                                        fetchPage(page.previous)
+                                    }
+                                }}>Previous Page</span>}
+                        </div>
+
+
+                        <div className='next-button' >{page.next && <span onClick={() => {
+
                             fetchPage(page.next)
-                        }
 
-                    }}>Next Page</span></div>
+
+                        }}>Next Page</span>}
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
         )
     } else {
         return (
-            <div>Loading...</div>
+            <div className='starwarspeople-component'>
+                <h1 className='title'>People of Star Wars</h1>
+                <div>Loading...</div>
+            </div>
+
         )
     }
 }
 function Person(props) {
     const [show, setShow] = useState(false)
+
+    const [homeworld, setHomeworld] = useState()
+    const [films, setFilms] = useState([])
+
+    useEffect(() => {
+        fetch(props.person.homeworld).then(f => f.json().then(d => {
+            setHomeworld(d.name)
+        }))
+    }, [])
+    var arr = []
+    useEffect(() => {
+
+        let itemsProcessed = 0;
+
+        if (props.person.films) {
+            for (let q = 0; q < props.person.films.length; q++) {
+                fetch(props.person.films[q]).then(w => w.json().then((e) => {
+                    arr.push(e.title)
+                    itemsProcessed++;
+                    if (itemsProcessed === props.person.films.length) {
+                        setFilms(arr)
+                    }
+                }))
+            }
+
+        }
+
+    }, [])
+
 
     return (
         <div className='person'>
@@ -80,8 +159,8 @@ function Person(props) {
                 <div className={'property '}>Eye Color: {props.person.eye_color}</div>
                 <div className={'property '}>Birth Year: {props.person.birth_year}</div>
                 <div className={'property '}>Gender: {props.person.gender}</div>
-                <div className={'property '}>Homeworld: {props.person.homeworld}</div>
-                <div className={'property '}>Films: {props.person.films}</div>
+                <div className={'property '}>Homeworld: {homeworld}</div>
+                <div className={'property '}>Films: {films.join(', ')}</div>
                 <div className={'property '}>Species: {props.person.species}</div>
                 <div className={'property '}>Vehicles: {props.person.vehicles}</div>
                 <div className={'property '}>Starships: {props.person.starships}</div>

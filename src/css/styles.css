@@ -40,6 +40,12 @@ a {
 
 }
 
+@font-face {
+    font-family: starJedi;
+    src: url('../fonts/Starjedi.ttf');
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -305,29 +311,47 @@ label {
 }
 
 .starwarspeople-component {
+    background-color: #000;
+    overflow-y: auto;
+}
+
+.starwarspeople-component .wrapper {
     max-width: 1000px;
     margin: 0 auto;
-    height: calc(100vh - 60px);
+
     position: relative;
     display: flex;
     flex-direction: column;
+    background-color: black;
 }
 
-
+.starwarspeople-component .title {
+    font-family: starJedi;
+    display: inline-block;
+    color: rgb(240, 200, 0);
+    overflow-wrap: normal;
+    word-wrap: normal;
+    word-break: keep-all;
+    border-bottom: 1px solid rgb(240, 200, 0);
+}
 
 .starwarspeople-component .buttons {
     width: 100%;
     align-self: flex-end;
+    margin-bottom: 5vh;
 }
 
 .person-list {
     max-width: 1000px;
     margin: 10px;
     flex: none;
-
+    line-height: 1.6
 }
 
-.person {}
+.person h2,
+.property {
+    font-family: 'Franklin Gothic Medium';
+}
 
 
 
@@ -337,10 +361,11 @@ label {
 }
 
 .properties {
-    background-color: hsl(256, 100%, 24%);
-
+    background-color: hsl(0, 0%, 0%);
+    border-radius: 15px;
     padding: 10px;
     max-width: 1000px;
+    line-height: 1.5;
 
 }
 
