@@ -120,15 +120,17 @@ function Person(props) {
 
     const [homeworld, setHomeworld] = useState()
     const [films, setFilms] = useState([])
+    const [species, setSpecies] = useState([])
 
     useEffect(() => {
         fetch(props.person.homeworld).then(f => f.json().then(d => {
             setHomeworld(d.name)
         }))
     }, [])
-    var arr = []
-    useEffect(() => {
 
+    //get films
+    useEffect(() => {
+        let arr = []
         let itemsProcessed = 0;
 
         if (props.person.films) {
@@ -142,6 +144,36 @@ function Person(props) {
                 }))
             }
 
+        }
+
+    }, [])
+    //get species
+    useEffect(() => {
+        let arr = []
+        //fetch('https://swapi.dev/api/people/1').then(q => q.json().then(w => console.log(w)))
+        let itemsProcessed = 0;
+
+        if (typeof props.person.species !== undefined) {
+            if (props.person.species.length > 0) {
+                for (let q = 0; q < props.person.species.length; q++) {
+                    fetch(props.person.species[q]).then(w => w.json().then((e) => {
+                        arr.push(e.name)
+                        itemsProcessed++;
+                        console.log(arr)
+                        if (itemsProcessed === props.person.species.length) {
+                            if (arr[0] == undefined) {
+                                setSpecies(['unknown'])
+
+                            } else {
+                                setSpecies(arr)
+                            }
+                        }
+                    }))
+                }
+
+            } else {
+                setSpecies(['uknown'])
+            }
         }
 
     }, [])
@@ -159,9 +191,9 @@ function Person(props) {
                 <div className={'property '}>Eye Color: {props.person.eye_color}</div>
                 <div className={'property '}>Birth Year: {props.person.birth_year}</div>
                 <div className={'property '}>Gender: {props.person.gender}</div>
-                <div className={'property '}>Homeworld: {homeworld}</div>
-                <div className={'property '}>Films: {films.join(', ')}</div>
-                <div className={'property '}>Species: {props.person.species}</div>
+                <div className={'property '}>Homeworld: {homeworld || 'Loading...'}</div>
+                <div className={'property '}>Films: {films.join(', ') || 'Loading...'}</div>
+                <div className={'property '}>Species: {species.join(', ') || 'Loading...'}</div>
                 <div className={'property '}>Vehicles: {props.person.vehicles}</div>
                 <div className={'property '}>Starships: {props.person.starships}</div>
                 <div className={'property '}>Created: {props.person.created}</div>
