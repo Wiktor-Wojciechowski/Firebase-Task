@@ -233,7 +233,7 @@ function Person(props) {
                 }
 
             } else {
-                setSpecies(['none'])
+                setStarships(['none'])
             }
         }
 
